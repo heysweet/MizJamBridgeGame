@@ -5,9 +5,13 @@
 
 [node name="Card" type="Node2D"]
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
 suit = 2
 rank = 3
 
 [node name="Renderable" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 0 )
 row = 18
 col = 22

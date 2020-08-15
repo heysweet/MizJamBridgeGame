@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Classes/Renderable.gd" type="Script" id=1]
+[ext_resource path="res://1bitpack_kenney_1.1/Tilesheet/colored_transparent_packed.png" type="Texture" id=2]
+
+[node name="Bridge" type="Node2D"]
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Renderable" type="Node2D" parent="."]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+numRows = 22
+numCols = 48
+row = 5
+col = 6
+
+[node name="Sprite" type="Sprite" parent="Renderable"]
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 96, 80, 16, 16 )
