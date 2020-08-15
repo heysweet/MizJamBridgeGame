@@ -6,7 +6,8 @@
 [node name="Card2" type="Sprite"]
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 496, 304, 16, 16 )
+region_rect = Rect2( 496, 256, 16, 16 )
 script = ExtResource( 1 )
-suit = 3
+row = 16
+col = 31
 rank = 12
