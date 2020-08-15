@@ -38,3 +38,6 @@ func _process(delta):
       updateSprite()
 #  if not Engine.editor_hint:
 #    pass
+
+func getSprite():
+  return $Sprite
