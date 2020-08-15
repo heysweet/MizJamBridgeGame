@@ -11,10 +11,10 @@ __meta__ = {
 }
 numRows = 22
 numCols = 48
-row = 1
-col = 2
+row = 2
+col = 4
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 32, 16, 16, 16 )
+region_rect = Rect2( 64, 32, 16, 16 )
