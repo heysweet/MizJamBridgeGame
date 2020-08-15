@@ -1,8 +1,5 @@
 extends Node2D
 
-export var previous_level : Level
-export var next_level : Level
-
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"

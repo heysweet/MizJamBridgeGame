@@ -16,18 +16,8 @@ _global_script_class_icons={
 [application]
 
 config/name="MizJamBridgeGame"
+run/main_scene="res://Renderable.tscn"
 config/icon="res://icon.png"
-
-[display]
-
-window/size/width=270
-window/size/height=180
-window/size/resizable=false
-window/size/test_width=1080
-window/size/test_height=720
-window/vsync/use_vsync=false
-window/stretch/mode="2d"
-window/stretch/aspect="keep"
 
 [rendering]
 

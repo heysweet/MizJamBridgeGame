@@ -28,13 +28,13 @@ func updateSprite():
   lastRow = row
   lastCol = col
   if $Sprite:
-    $Sprite.region_rect.position.x = col * 16
-    $Sprite.region_rect.position.y = row * 16
+	$Sprite.region_rect.position.x = col * 16
+	$Sprite.region_rect.position.y = row * 16
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
   if Engine.editor_hint:
-    if ((lastRow != row) || (lastCol != col)):
-      updateSprite()
+	if ((lastRow != row) || (lastCol != col)):
+	  updateSprite()
 #  if not Engine.editor_hint:
 #    pass
