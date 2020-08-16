@@ -10,6 +10,9 @@ offset = Vector2( -8, -16 )
 region_enabled = true
 region_rect = Rect2( 384, 48, 16, 16 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 row = 3
 col = 24
 
