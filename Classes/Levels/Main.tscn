@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Classes/MovingObjects/Cart.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Classes/Objects/City.tscn" type="PackedScene" id=2]
@@ -8,15 +8,15 @@
 [ext_resource path="res://1bitpack_kenney_1.1/valley.png" type="Texture" id=6]
 
 [sub_resource type="NavigationPolygon" id=1]
-vertices = PoolVector2Array( 16, 13.6444, 4.2792, 13.8596, 4.49555, 4.98917, 16, 5.11691 )
+vertices = PoolVector2Array( 16, 13.6057, 4.2792, 13.8596, 4.49555, 4.98917, 16, 4.30295 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
 [sub_resource type="NavigationPolygon" id=2]
-vertices = PoolVector2Array( 16, 14.1793, 4.22511, 14.1793, 3.95467, 0, 16, 0 )
+vertices = PoolVector2Array( 16, 14.1793, 4.22511, 14.1793, 4.30292, 0, 16, 0 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
 [sub_resource type="NavigationPolygon" id=3]
-vertices = PoolVector2Array( 16, 13.9137, 0, 13.8596, 0, 4.93508, 16, 5.09734 )
+vertices = PoolVector2Array( 16, 14.0708, 0, 13.8596, 0, 4.93508, 16, 4.76807 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
 [sub_resource type="NavigationPolygon" id=4]
@@ -67,7 +67,27 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
-[sub_resource type="TileSet" id=16]
+[sub_resource type="NavigationPolygon" id=16]
+vertices = PoolVector2Array( 15, 3.30505, 0, 3.77017, 0, 11.6775, 15, 11.4449 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=17]
+vertices = PoolVector2Array( 0, 3.53763, 15, 3.53763, 15, 11.4449, 0, 11.4449 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=18]
+vertices = PoolVector2Array( 0, 14.2357, 15, 13.7706, 15, 5.39816, 0, 5.39816 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=19]
+vertices = PoolVector2Array( 0, 12.3752, 15, 12.3752, 15, 4.00275, 0, 4.00275 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="NavigationPolygon" id=20]
+vertices = PoolVector2Array( 15, 13.3055, 0.469147, 13.3055, 0.469147, 5.39816, 15, 5.39816 )
+polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
+
+[sub_resource type="TileSet" id=21]
 2/name = "valley.png 2"
 2/texture = ExtResource( 6 )
 2/tex_offset = Vector2( 0, 0 )
@@ -91,6 +111,27 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 2/shape_one_way_margin = 0.0
 2/shapes = [  ]
 2/z_index = 0
+4/name = "valley.png 4"
+4/texture = ExtResource( 6 )
+4/tex_offset = Vector2( 0, 0 )
+4/modulate = Color( 1, 1, 1, 1 )
+4/region = Rect2( 0, 51, 100, 15 )
+4/tile_mode = 2
+4/autotile/icon_coordinate = Vector2( 0, 0 )
+4/autotile/tile_size = Vector2( 15, 15 )
+4/autotile/spacing = 2
+4/autotile/occluder_map = [  ]
+4/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 16 ), Vector2( 1, 0 ), SubResource( 17 ), Vector2( 2, 0 ), SubResource( 18 ), Vector2( 3, 0 ), SubResource( 19 ), Vector2( 5, 0 ), SubResource( 20 ) ]
+4/autotile/priority_map = [  ]
+4/autotile/z_index_map = [  ]
+4/occluder_offset = Vector2( 0, 0 )
+4/navigation_offset = Vector2( 0, 0 )
+4/shape_offset = Vector2( 0, 0 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+4/shape_one_way = false
+4/shape_one_way_margin = 0.0
+4/shapes = [  ]
+4/z_index = 0
 
 [node name="Game" type="Node2D"]
 
@@ -103,15 +144,16 @@ __meta__ = {
 [node name="Navigation2D" type="Navigation2D" parent="Level"]
 
 [node name="TileMap" type="TileMap" parent="Level/Navigation2D"]
-tile_set = SubResource( 16 )
+tile_set = SubResource( 21 )
 cell_size = Vector2( 14, 14 )
 format = 1
-tile_data = PoolIntArray( 0, 2, 131073, 1, 2, 3, 2, 2, 3, 3, 2, 3, 4, 2, 65537, 8, 2, 131073, 9, 2, 3, 10, 2, 3, 11, 2, 3, 12, 2, 65537, 65536, 2, 4, 65537, 2, 5, 65538, 2, 5, 65539, 2, 5, 65540, 2, 65540, 65544, 2, 4, 65545, 2, 5, 65546, 2, 5, 65547, 2, 5, 65548, 2, 65540, 131072, 2, 4, 131073, 2, 5, 131074, 2, 5, 131075, 2, 5, 131076, 2, 5, 131077, 2, 1, 131078, 2, 1, 131079, 2, 1, 131080, 2, 5, 131081, 2, 5, 131082, 2, 5, 131083, 2, 5, 131084, 2, 65540, 196608, 2, 4, 196609, 2, 5, 196610, 2, 5, 196611, 2, 5, 196612, 2, 65540, 196616, 2, 4, 196617, 2, 5, 196618, 2, 5, 196619, 2, 5, 196620, 2, 65540, 262144, 2, 131072, 262145, 2, 65539, 262146, 2, 65539, 262147, 2, 65539, 262148, 2, 131075, 262152, 2, 131072, 262153, 2, 65539, 262154, 2, 65539, 262155, 2, 65539, 262156, 2, 131075 )
+tile_data = PoolIntArray( 0, 2, 131073, 1, 2, 3, 2, 2, 3, 3, 2, 3, 4, 2, 3, 5, 2, 65537, 7, 2, 131073, 8, 2, 3, 9, 2, 3, 10, 2, 3, 11, 2, 3, 12, 2, 65537, 65536, 2, 4, 65537, 2, 5, 65538, 2, 5, 65539, 2, 5, 65540, 2, 5, 65541, 2, 65540, 65543, 2, 4, 65544, 2, 5, 65545, 2, 5, 65546, 2, 5, 65547, 2, 5, 65548, 2, 65540, 131072, 2, 4, 131073, 2, 5, 131074, 2, 5, 131075, 2, 5, 131076, 2, 5, 131077, 2, 5, 131078, 2, 1, 131079, 2, 5, 131080, 2, 5, 131081, 2, 5, 131082, 2, 5, 131083, 2, 5, 131084, 2, 65540, 196608, 2, 4, 196609, 2, 5, 196610, 2, 5, 196611, 2, 5, 196612, 2, 5, 196613, 2, 65540, 196615, 2, 4, 196616, 2, 5, 196617, 2, 5, 196618, 2, 5, 196619, 2, 5, 196620, 2, 65540, 262144, 2, 4, 262145, 2, 5, 262146, 2, 5, 262147, 2, 5, 262148, 2, 5, 262149, 2, 65540, 262151, 2, 4, 262152, 2, 5, 262153, 2, 5, 262154, 2, 5, 262155, 2, 5, 262156, 2, 65540, 327680, 2, 131072, 327681, 2, 65539, 327682, 2, 65539, 327683, 2, 65539, 327684, 2, 65539, 327685, 2, 131075, 327687, 2, 131072, 327688, 2, 65539, 327689, 2, 65539, 327690, 2, 65539, 327691, 2, 65539, 327692, 2, 131075 )
 
 [node name="Cities" type="Node" parent="Level"]
 
 [node name="City" parent="Level/Cities" instance=ExtResource( 2 )]
 position = Vector2( 144, 35 )
+suit = 0
 
 [node name="Carts" type="Node" parent="Level"]
 script = ExtResource( 5 )

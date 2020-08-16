@@ -21,15 +21,11 @@ func _ready():
   for cart in $Carts.get_children():
     print(cart.position)
     print(RedCities[0].position)
-    var path = $Navigation2D.get_simple_path(cart.position, RedCities[0].position,true)
+    var path = $Navigation2D.get_simple_path(cart.position, RedCities[0].position, false)
     print(path)
     cart.set_path_to(path)
 
-   # if cart_suit == Suit.HEART || cart_suit == Suit.DIAMOND:
-      #print("should work")
-
   pass # Replace with function body.
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
