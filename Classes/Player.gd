@@ -8,6 +8,8 @@ var debounce_millis = 80
 var target_position = Vector2()
 var movement_tween : Tween
 
+signal time_step
+
 tool
 
 func _input(ev):
@@ -59,10 +61,13 @@ func update_tween(move_vector : Vector2):
   tween.start()
 
 func do_move(move_vector):
+  if move_vector.x == 0 and move_vector.y == 0:
+    return
   if move_vector.x != 0:
     set_tile_col(tile_col + move_vector.x)
-  elif move_vector.y != 0:
+  else:
     set_tile_row(tile_row + move_vector.y)
+  emit_signal("time_step")
   update_tween(move_vector)
 
 # Called when the node enters the scene tree for the first time.
