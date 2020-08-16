@@ -4,3 +4,5 @@
 
 [node name="Cart2" type="Sprite"]
 script = ExtResource( 1 )
+
+[node name="Tween" type="Tween" parent="."]
