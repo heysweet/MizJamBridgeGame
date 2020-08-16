@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Classes/Level.gd" type="Script" id=1]
 [ext_resource path="res://1bitpack_kenney_1.1/valley.png" type="Texture" id=2]
-[ext_resource path="res://Classes/Cart.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Classes/Cart3.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Classes/Player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Classes/City2.tscn" type="PackedScene" id=5]
 
@@ -34,7 +34,6 @@
 [node name="Game" type="Node2D"]
 
 [node name="City2" parent="." instance=ExtResource( 5 )]
-modulate = Color( 0.4, 0.8, 0.933333, 1 )
 offset = Vector2( 150, 30 )
 
 [node name="Level" type="Node2D" parent="."]
@@ -42,8 +41,6 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-
-[node name="Cart" parent="Level" instance=ExtResource( 3 )]
 
 [node name="TileMap" type="TileMap" parent="Level"]
 tile_set = SubResource( 1 )
@@ -55,3 +52,5 @@ tile_data = PoolIntArray( 0, 2, 131073, 1, 2, 3, 2, 2, 3, 3, 2, 3, 4, 2, 65537, 
 position = Vector2( 16, 32 )
 tile_row = 2
 tile_col = 1
+
+[node name="Cart" parent="." instance=ExtResource( 3 )]

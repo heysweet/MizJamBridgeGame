@@ -1,4 +1,4 @@
-extends Sprite
+extends Node2D
 
 tool
 
@@ -19,9 +19,11 @@ func set_col(new_val):
 func draw_me():
   var x_pos = col * 16
   var y_pos = row  * 16
-  region_rect = Rect2(x_pos, y_pos, width, height)
+  $Sprite.region_rect = Rect2(x_pos, y_pos, width, height)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-  region_enabled = true
+  $Sprite.region_enabled = true
+  $Sprite.width = width
+  $Sprite.height = height
   pass # Replace with function body.

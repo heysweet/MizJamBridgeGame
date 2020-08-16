@@ -1,13 +1,12 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Classes/City2.gd" type="Script" id=1]
-[ext_resource path="res://1bitpack_kenney_1.1/Tilesheet/colored_transparent_packed.png" type="Texture" id=2]
+[ext_resource path="res://Classes/Renderable2.tscn" type="PackedScene" id=2]
 
-[node name="City2" type="Sprite"]
+[node name="City2" type="Node2D"]
 modulate = Color( 0.4, 0.8, 0.933333, 1 )
-texture = ExtResource( 2 )
-region_enabled = true
-region_rect = Rect2( 80, 304, 16, 16 )
 script = ExtResource( 1 )
+
+[node name="CityRenderable" parent="." instance=ExtResource( 2 )]
 row = 19
 col = 5

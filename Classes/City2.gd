@@ -1,13 +1,9 @@
-extends "res://Classes/Renderable2.gd"
+extends Node2D
 
 enum Suit {HEART = 0, DIAMOND, CLUB, SPADE}
 var suit_colors = [Color("#66CCEE"), Color("$228833"), Color("#CCBB44"), Color("#AA3377")]
 
 tool
-
-# Ace of Hearts
-var min_row = 16
-var min_col = 20
 
 export(Suit) var suit = Suit.HEART setget set_suit
 
