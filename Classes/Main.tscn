@@ -52,4 +52,19 @@ position = Vector2( 16, 32 )
 tile_row = 2
 tile_col = 1
 
+<<<<<<< Updated upstream
 [node name="Cart" parent="." instance=ExtResource( 3 )]
+=======
+[node name="Tween" type="Tween" parent="Player"]
+
+[node name="Tween2" type="Tween" parent="Player"]
+
+[node name="Tween3" type="Tween" parent="Player"]
+
+[node name="Tween4" type="Tween" parent="Player"]
+
+[node name="Tween5" type="Tween" parent="Player"]
+
+[node name="Tween6" type="Tween" parent="Player"]
+[connection signal="time_step" from="Player" to="Cart" method="_on_Player_time_step"]
+>>>>>>> Stashed changes
