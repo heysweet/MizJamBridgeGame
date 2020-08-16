@@ -17,7 +17,6 @@ _global_script_class_icons={
 
 config/name="MizJamBridgeGame"
 run/main_scene="res://Classes/Main.tscn"
-boot_splash/use_filter=false
 config/icon="res://icon.png"
 
 [display]
