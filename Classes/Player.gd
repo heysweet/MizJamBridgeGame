@@ -15,16 +15,16 @@ tool
 func _input(ev):
   if ev is InputEventKey and ev.is_pressed() and not ev.echo:
     match (ev.scancode):
-      KEY_W:
+      KEY_W,KEY_UP:
         try_move(Vector2(0, -1))
         return
-      KEY_A:
+      KEY_A,KEY_LEFT:
         try_move(Vector2(-1, 0))
         return
-      KEY_S:
+      KEY_S,KEY_DOWN:
         try_move(Vector2(0, 1))
         return
-      KEY_D:
+      KEY_D,KEY_RIGHT:
         try_move(Vector2(1, 0))
         return
 
