@@ -7,12 +7,10 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-  # Creates carts
-  
-  
   pass # Replace with function body.
 
-func change():
+
+func on_step():     
   pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
