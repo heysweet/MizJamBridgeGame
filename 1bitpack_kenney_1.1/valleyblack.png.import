@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/valley2.png-48395f041beae80f0ab5b928f73b5c51.stex"
+path="res://.import/valleyblack.png-bf4229b61f10667eea395bdc9980e319.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://1bitpack_kenney_1.1/valley2.png"
-dest_files=[ "res://.import/valley2.png-48395f041beae80f0ab5b928f73b5c51.stex" ]
+source_file="res://1bitpack_kenney_1.1/valleyblack.png"
+dest_files=[ "res://.import/valleyblack.png-bf4229b61f10667eea395bdc9980e319.stex" ]
 
 [params]
 
@@ -20,11 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-<<<<<<< Updated upstream
-flags/filter=false
-=======
 flags/filter=true
->>>>>>> Stashed changes
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
