@@ -14,7 +14,10 @@ export(Rank) var rank = Rank.ACE setget set_rank
 
 # Declare member variables here. Examples:
 # var a = 2
-# var b = "text"
+# var b = "text
+
+func _init():
+  pass
 
 func set_suit(new_suit):
   suit = new_suit

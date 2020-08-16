@@ -33,7 +33,10 @@
 
 [node name="Game" type="Node2D"]
 
+[node name="Cart" parent="." instance=ExtResource( 3 )]
+
 [node name="City2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 144, 35 )
 
 [node name="Level" type="Node2D" parent="."]
 script = ExtResource( 1 )
@@ -51,20 +54,4 @@ tile_data = PoolIntArray( 0, 2, 131073, 1, 2, 3, 2, 2, 3, 3, 2, 3, 4, 2, 65537, 
 position = Vector2( 16, 32 )
 tile_row = 2
 tile_col = 1
-
-<<<<<<< Updated upstream
-[node name="Cart" parent="." instance=ExtResource( 3 )]
-=======
-[node name="Tween" type="Tween" parent="Player"]
-
-[node name="Tween2" type="Tween" parent="Player"]
-
-[node name="Tween3" type="Tween" parent="Player"]
-
-[node name="Tween4" type="Tween" parent="Player"]
-
-[node name="Tween5" type="Tween" parent="Player"]
-
-[node name="Tween6" type="Tween" parent="Player"]
 [connection signal="time_step" from="Player" to="Cart" method="_on_Player_time_step"]
->>>>>>> Stashed changes
