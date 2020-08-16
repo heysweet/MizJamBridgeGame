@@ -4,6 +4,8 @@ tool
 
 var width = 16
 var height = 16
+var resource_pack = preload("res://1bitpack_kenney_1.1/Tilesheet/monochrome_transparent_packed.png")
+var sprite = Sprite.new()
 
 export var row : int = 0 setget set_row
 export var col : int = 0 setget set_col
@@ -19,10 +21,10 @@ func set_col(new_val):
 func draw_me():
   var x_pos = col * 16
   var y_pos = row  * 16
-  if .has_node("Sprite"):
-    $Sprite.region_rect = Rect2(x_pos, y_pos, width, height)
+  sprite.region_enabled = true
+  sprite.texture = resource_pack
+  sprite.region_rect = Rect2(x_pos, y_pos, width, height)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-  if .has_node("Sprite"):
-    $Sprite.region_enabled = true
+  draw_me()

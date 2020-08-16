@@ -13,6 +13,10 @@ __meta__ = {
 [node name="Card2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 0, -10 )
 z_index = 1
+row = 17
+col = 21
+suit = 1
+rank = 2
 
 [node name="Cart" parent="." instance=ExtResource( 3 )]
 row = 13

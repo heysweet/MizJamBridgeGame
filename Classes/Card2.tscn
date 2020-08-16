@@ -4,6 +4,10 @@
 
 [node name="Card2" type="Node2D"]
 script = ExtResource( 1 )
-row = 16
-col = 31
-rank = 12
+row = 17
+col = 23
+suit = 1
+rank = 4
+
+[node name="Sprite" type="Sprite" parent="."]
+region_rect = Rect2( 368, 272, 16, 16 )
