@@ -20,7 +20,6 @@ func _input(event):
     if is_selected() and can_place_bridge():
       place_bridge()
     else:
-      var sprite = $Card.getSprite()
       var delta = event.position - position
       if abs(delta.x) < 12 and abs(delta.y) < 14:
         get_tree().set_input_as_handled()
