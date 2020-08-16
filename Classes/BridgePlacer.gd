@@ -3,6 +3,9 @@ extends Node2D
 var rest_position
 var is_placed = false
 
+export var x_offset = 0
+export var y_offset = 0
+
 func isLeftClick(event) -> bool:
   return event is InputEventMouseButton \
     and event.pressed \
@@ -28,10 +31,9 @@ func _input(event):
     if isRightClick(event):
       deselect()
     elif event is InputEventMouseMotion and !is_placed:
-      var offset = 10
       var x = int(ceil(event.position.x))
       var y = int(ceil(event.position.y))
-      position = Vector2(offset + x - (x % 16), offset + y - (y % 16))
+      position = Vector2(x_offset + x - (x % 16), y_offset + y - (y % 16))
 
 func can_place_bridge() -> bool:
   return true

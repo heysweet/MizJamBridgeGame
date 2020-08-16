@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Classes/Level.gd" type="Script" id=1]
 [ext_resource path="res://1bitpack_kenney_1.1/valley.png" type="Texture" id=2]
 [ext_resource path="res://Classes/Cart.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Classes/BridgePlacer.tscn" type="PackedScene" id=4]
 
 [sub_resource type="TileSet" id=1]
 2/name = "valley.png 2"
@@ -30,6 +31,11 @@
 2/z_index = 0
 
 [node name="Game" type="Node2D"]
+
+[node name="BridgePlacer" parent="." instance=ExtResource( 4 )]
+position = Vector2( 94.2253, 78.9328 )
+x_offset = 8
+y_offset = 8
 
 [node name="Level" type="Node2D" parent="."]
 script = ExtResource( 1 )
