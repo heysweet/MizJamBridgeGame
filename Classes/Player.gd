@@ -5,6 +5,8 @@ var debounce_millis = 80
 
 signal time_step
 
+tool
+
 func _input(ev):
   if ev is InputEventKey and ev.is_pressed() and not ev.echo:
     match (ev.scancode):

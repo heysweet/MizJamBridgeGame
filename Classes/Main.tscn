@@ -34,7 +34,6 @@
 [node name="Game" type="Node2D"]
 
 [node name="City2" parent="." instance=ExtResource( 5 )]
-offset = Vector2( 150, 30 )
 
 [node name="Level" type="Node2D" parent="."]
 script = ExtResource( 1 )

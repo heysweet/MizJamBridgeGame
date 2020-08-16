@@ -13,7 +13,3 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
-row = 3
-col = 24
-
-[node name="Tween" type="Tween" parent="."]
