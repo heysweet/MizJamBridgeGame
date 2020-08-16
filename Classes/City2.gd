@@ -1,7 +1,7 @@
 extends "res://Classes/Renderable2.gd"
 
 enum Suit {HEART = 0, DIAMOND, CLUB, SPADE}
-var suit_colors = [Color(0,0,1), Color(0,1,1), Color(1,1,1), Color(0,0,0)]
+var suit_colors = [Color("#66CCEE"), Color("$228833"), Color("#CCBB44"), Color("#AA3377")]
 
 tool
 
