@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Classes/Player.gd" type="Script" id=1]
+[ext_resource path="res://Classes/MovingObjects/Player.gd" type="Script" id=1]
 [ext_resource path="res://1bitpack_kenney_1.1/Tilesheet/colored_transparent_packed.png" type="Texture" id=2]
+
 
 [node name="Player" type="Sprite"]
 texture = ExtResource( 2 )
