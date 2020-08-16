@@ -19,11 +19,10 @@ func set_col(new_val):
 func draw_me():
   var x_pos = col * 16
   var y_pos = row  * 16
-  $Sprite.region_rect = Rect2(x_pos, y_pos, width, height)
+  if .has_node("Sprite"):
+    $Sprite.region_rect = Rect2(x_pos, y_pos, width, height)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-  $Sprite.region_enabled = true
-  $Sprite.width = width
-  $Sprite.height = height
-  pass # Replace with function body.
+  if .has_node("Sprite"):
+    $Sprite.region_enabled = true

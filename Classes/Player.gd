@@ -22,6 +22,9 @@ func _input(ev):
       KEY_D,KEY_RIGHT:
         try_move(Vector2(1, 0))
         return
+      KEY_SPACE:
+        try_interact()
+        return
 
 func can_move(move_vector):
   return true
@@ -33,6 +36,10 @@ func try_move(move_vector):
   last_key_press = now
   if can_move(move_vector):
     do_move(move_vector)
+    
+func try_interact():
+  emit_signal("bridge_destroyed")
+  emit_signal("time_step")
 
 func do_move(move_vector):
   .do_move(move_vector)

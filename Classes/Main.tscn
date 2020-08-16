@@ -33,7 +33,10 @@
 
 [node name="Game" type="Node2D"]
 
+[node name="Cart" parent="." instance=ExtResource( 3 )]
+
 [node name="City2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 140, 40 )
 
 [node name="Level" type="Node2D" parent="."]
 script = ExtResource( 1 )
@@ -52,4 +55,7 @@ position = Vector2( 16, 32 )
 tile_row = 2
 tile_col = 1
 
-[node name="Cart" parent="." instance=ExtResource( 3 )]
+[node name="Tween" type="Tween" parent="Player"]
+
+[node name="Tween2" type="Tween" parent="Player"]
+[connection signal="time_step" from="Player" to="Cart" method="_on_Player_time_step"]
