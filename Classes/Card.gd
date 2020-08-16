@@ -1,7 +1,9 @@
-extends "res://Classes/Renderable2.gd"
+extends "res://Classes/Renderable.gd"
 
 enum Suit {HEART = 0, DIAMOND, CLUB, SPADE}
 enum Rank {ACE = 1, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING}
+
+var suit_colors = [Color("#66CCEE"), Color("#228833"), Color("#CCBB44"), Color("#AA3377")]
 
 tool
 
@@ -21,6 +23,7 @@ func _init():
 
 func set_suit(new_suit):
   suit = new_suit
+  modulate = suit_colors[suit]
   set_row(min_row + suit)
   
 func set_rank(new_rank):

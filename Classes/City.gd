@@ -1,7 +1,7 @@
 extends Node2D
 
 enum Suit {HEART = 0, DIAMOND, CLUB, SPADE}
-var suit_colors = [Color("#66CCEE"), Color("$228833"), Color("#CCBB44"), Color("#AA3377")]
+var suit_colors = [Color("#66CCEE"), Color("#228833"), Color("#CCBB44"), Color("#AA3377")]
 
 tool
 

@@ -1,5 +1,7 @@
 extends "res://Classes/Movable.gd"
 
+tool
+
 var time_passed = 0
 # Declare member variables here. Examples:
 # var a = 2
@@ -13,7 +15,7 @@ func _ready():
 func _process(time):
   pass
 
-func _on_Player_time_step():
+func time_step():
   if len(path_to_city) > 0:
     do_move(path_to_city.pop_back())
 
