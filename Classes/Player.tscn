@@ -15,5 +15,3 @@ __meta__ = {
 }
 row = 3
 col = 24
-
-[node name="Tween" type="Tween" parent="."]

@@ -5,3 +5,8 @@
 [node name="Movable" type="Sprite"]
 region_rect = Rect2( 0, 0, 16, 16 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tween" type="Tween" parent="."]
