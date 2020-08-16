@@ -34,7 +34,6 @@
 [node name="Game" type="Node2D"]
 
 [node name="City2" parent="." instance=ExtResource( 5 )]
-modulate = Color( 0.4, 0.8, 0.933333, 1 )
 offset = Vector2( 150, 30 )
 
 [node name="Level" type="Node2D" parent="."]
