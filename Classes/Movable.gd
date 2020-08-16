@@ -8,9 +8,10 @@ var tween : Tween
 tool
 
 func _ready():
-  tween = Tween.new()
-  .add_child(tween)
-  tween.set_owner(get_tree().get_edited_scene_root())
+  if !Engine.editor_hint:
+    tween = Tween.new()
+    .add_child(tween)
+    tween.set_owner(get_tree().get_edited_scene_root())
     
 func set_tile_col(col):
   tile_col = col
