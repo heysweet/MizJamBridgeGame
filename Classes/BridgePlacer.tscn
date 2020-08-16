@@ -11,7 +11,7 @@ script = ExtResource( 1 )
 visible = false
 z_index = 2
 
-[node name="Card2" parent="." instance=ExtResource( 2 )]
+[node name="Card" parent="." instance=ExtResource( 2 )]
 scale = Vector2( 2, 2 )
 region_rect = Rect2( 336, 256, 16, 16 )
 col = 21
