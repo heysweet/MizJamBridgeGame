@@ -1,5 +1,7 @@
 extends "res://Classes/Renderable.gd"
 
+tool
+
 enum Suit {HEART = 0, DIAMOND, CLUB, SPADE}
 enum Rank {ACE = 1, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING}
 
@@ -12,9 +14,6 @@ var min_col = 20
 export(Suit) var suit setget set_suit
 export(Rank) var rank setget set_rank
 
-func _init():
-  pass
-
 func set_suit(new_suit):
   suit = new_suit
   modulate = suit_colors[suit]
@@ -23,7 +22,3 @@ func set_suit(new_suit):
 func set_rank(new_rank):
   rank = new_rank
   set_col(min_col + rank - 1)
-  
-# Called when the node enters the scene tree for the first time.
-func _ready():
-  pass # Replace with function body.

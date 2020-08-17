@@ -13,13 +13,16 @@ func _init():
 # Called when the node enters the scene tree for the first time.
 func _ready():
   for city in $Cities.get_children():
-    print(city.suit)
     if city.suit == Suit.HEART || city.suit == Suit.DIAMOND:
+      print("Appending red")
       RedCities.append(city)
     else:
       print("Appending blue")
       BlueCities.append(city)
+  print("checking carts")
   for cart in $Carts.get_children():
+    print(cart)
+    print("Level suit check")
     print(cart.suit)
     if (cart.suit == Suit.HEART || cart.suit == Suit.DIAMOND) && len(RedCities) > 0:
         set_closest_city(RedCities, cart)

@@ -3,8 +3,9 @@
 [ext_resource path="res://Classes/Objects/Card.gd" type="Script" id=1]
 
 [node name="Card2" type="Node2D"]
+modulate = Color( 0.133333, 0.533333, 0.2, 1 )
 script = ExtResource( 1 )
-row = 19
-col = 21
-suit = 3
-rank = 2
+row = 17
+col = 24
+suit = 1
+rank = 5

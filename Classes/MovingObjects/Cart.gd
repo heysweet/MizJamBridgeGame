@@ -1,5 +1,7 @@
 extends "res://Classes/Movable.gd"
 
+tool
+
 enum Suit {HEART = 0, DIAMOND, CLUB, SPADE}
 enum Rank {ACE = 1, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING}
 
@@ -7,18 +9,15 @@ export(Suit) var suit setget set_suit
 export(Rank) var rank setget set_rank
 
 var time_passed = 0
-var path_to_city
+var path_to_city = []
 
 func set_suit(new_suit):
-  $Card2.suit = new_suit
+  suit = new_suit
+  $Card2.suit = suit
   
 func set_rank(new_rank):
-  $Card2.rank = new_rank
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-  path_to_city = []
-  pass # Replace with function body.
+  rank = new_rank
+  $Card2.rank = rank
   
 func _process(time):
   pass

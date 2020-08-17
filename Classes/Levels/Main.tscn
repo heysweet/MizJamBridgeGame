@@ -138,7 +138,7 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
-[sub_resource type="TileSet" id=44]
+[sub_resource type="TileSet" id=38]
 2/name = "valley.png 2"
 2/texture = ExtResource( 6 )
 2/tex_offset = Vector2( 0, 0 )
@@ -302,7 +302,7 @@ __meta__ = {
 [node name="Navigation2D" type="Navigation2D" parent="Level"]
 
 [node name="TileMap" type="TileMap" parent="Level/Navigation2D"]
-tile_set = SubResource( 44 )
+tile_set = SubResource( 38 )
 cell_size = Vector2( 16, 16 )
 cell_tile_origin = 1
 format = 1
@@ -318,7 +318,6 @@ suit = 2
 [node name="City" parent="Level/Cities" instance=ExtResource( 2 )]
 modulate = Color( 0.4, 0.8, 0.933333, 1 )
 position = Vector2( 144, 35 )
-suit = 0
 
 [node name="Carts" type="Node" parent="Level"]
 script = ExtResource( 5 )
@@ -327,15 +326,14 @@ script = ExtResource( 5 )
 position = Vector2( 32, 32 )
 tile_row = 2
 tile_col = 2
-suit = 3
-rank = 2
+suit = 2
+rank = 3
 
 [node name="Cart2" parent="Level/Carts" instance=ExtResource( 1 )]
-position = Vector2( 140, 80 )
+position = Vector2( 112, 80 )
 tile_row = 5
 tile_col = 7
-suit = 3
-rank = 7
+rank = 8
 
 [node name="Line2D" type="Line2D" parent="Level"]
 points = PoolVector2Array( -0.954857, -1.9772 )
