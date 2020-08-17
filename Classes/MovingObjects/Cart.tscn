@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Classes/MovingObjects/Cart.gd" type="Script" id=1]
 [ext_resource path="res://Classes/Objects/Card.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Classes/Renderable.tscn" type="PackedScene" id=3]
+[ext_resource path="res://1bitpack_kenney_1.1/Tilesheet/monochrome_transparent_packed.png" type="Texture" id=3]
 
 [node name="Cart" type="KinematicBody2D"]
 script = ExtResource( 1 )
@@ -12,14 +12,15 @@ __meta__ = {
 
 [node name="Card2" parent="." instance=ExtResource( 2 )]
 modulate = Color( 0.133333, 0.533333, 0.2, 1 )
-position = Vector2( 0, -2 )
+position = Vector2( 0, 6 )
 z_index = 1
 row = 17
 col = 20
 suit = 1
 rank = 1
 
-[node name="Cart" parent="." instance=ExtResource( 3 )]
-position = Vector2( 0, 8 )
-row = 13
-col = 15
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+offset = Vector2( 0, 14 )
+region_enabled = true
+region_rect = Rect2( 400, 13, 16, 3 )
