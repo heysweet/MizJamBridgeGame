@@ -12,32 +12,25 @@ func _init():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-
   for city in $Cities.get_children():
+    print(city.suit)
     if city.suit == Suit.HEART || city.suit == Suit.DIAMOND:
       RedCities.append(city)
     else:
+      print("Appending blue")
       BlueCities.append(city)
   for cart in $Carts.get_children():
-    var path = $Navigation2D.get_simple_path(cart.position, RedCities[0].position, false)
-    cart.set_path_to(path)
+    print(cart.suit)
+    if (cart.suit == Suit.HEART || cart.suit == Suit.DIAMOND) && len(RedCities) > 0:
+        set_closest_city(RedCities, cart)
+    elif (cart.suit == Suit.SPADE || cart.suit == Suit.CLUB) && len(BlueCities) > 0:    
+        set_closest_city(BlueCities, cart)
 
-  pass # Replace with function body.
-
-
-
-func _input(event: InputEvent):
-  if event is InputEventMouseButton:
-    if event.button_index == BUTTON_LEFT and event.pressed:
-      var cart = $Carts.get_children()[0]
-      var goal = event.position
-      var cart_pos = cart.position
-      cart_pos.y += 8
-      var path = $Navigation2D.get_simple_path(cart_pos, goal, false)
-      cart.set_path_to(path)
-      $Line2D.points = PoolVector2Array(path)
-      $Line2D.show()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-  pass
+func set_closest_city(cities, cart):
+    var min_path 
+    cart.position.y += 8
+    for city in cities:
+        var path = $Navigation2D.get_simple_path(cart.position, city.position, false)
+        if (!min_path || path.size() < min_path.size()):
+            min_path = path
+    cart.set_path_to(min_path) 

@@ -1,21 +1,16 @@
 extends "res://Classes/Movable.gd"
 
-tool
-
 enum Suit {HEART = 0, DIAMOND, CLUB, SPADE}
 enum Rank {ACE = 1, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING}
 
-export(Suit) var suit = Suit.HEART setget set_suit
-export(Rank) var rank = Rank.ACE setget set_rank
+export(Suit) var suit setget set_suit
+export(Rank) var rank setget set_rank
 
 var time_passed = 0
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 var path_to_city
 
 func set_suit(new_suit):
-  $Card2.rank = new_suit
+  $Card2.suit = new_suit
   
 func set_rank(new_rank):
   $Card2.rank = new_rank

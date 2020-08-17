@@ -17,7 +17,7 @@ z_index = 1
 row = 17
 col = 20
 suit = 1
-rank = 1
+rank = 0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )

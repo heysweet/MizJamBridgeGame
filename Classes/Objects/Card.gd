@@ -5,18 +5,12 @@ enum Rank {ACE = 1, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, 
 
 var suit_colors = [Color("#66CCEE"), Color("#228833"), Color("#CCBB44"), Color("#AA3377")]
 
-tool
-
 # Ace of Hearts
 var min_row = 16
 var min_col = 20
 
-export(Suit) var suit = Suit.HEART setget set_suit
-export(Rank) var rank = Rank.ACE setget set_rank
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text
+export(Suit) var suit setget set_suit
+export(Rank) var rank setget set_rank
 
 func _init():
   pass
