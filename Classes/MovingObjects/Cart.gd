@@ -27,13 +27,16 @@ func _ready():
   
 func _process(time):
   pass
+  
+func map_to_cell(value : int):
+  return int(floor(value / 16))
 
 func set_path_to(arr : Array):
   var seen_nodes = {}
   seen_nodes[var2str(Vector2(tile_col, tile_row))] = true
   var new_arr = []
   for pt in arr:
-    var v = Vector2(int(round(pt.x / 16)), int(round(pt.y / 16)))
+    var v = Vector2(map_to_cell(pt.x), map_to_cell(pt.y))
     var v_str = var2str(v)
     if !(v_str in seen_nodes):
       seen_nodes[v_str] = true
