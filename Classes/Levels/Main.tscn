@@ -378,11 +378,12 @@ position = Vector2( 32, 32 )
 tile_row = 2
 tile_col = 2
 
+[node name="Line2D" type="Line2D" parent="Level"]
+points = PoolVector2Array( -0.954857, -1.9772 )
+width = 2.0
+
 [node name="Player" parent="." instance=ExtResource( 3 )]
 position = Vector2( 16, 32 )
 tile_row = 2
 tile_col = 1
-
-[node name="Line2D" type="Line2D" parent="."]
-points = PoolVector2Array( -0.954857, -1.9772 )
 [connection signal="time_step" from="Player" to="Level/Carts" method="_on_Player_time_step"]

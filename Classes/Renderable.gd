@@ -11,7 +11,8 @@ export var row : int = 1 setget set_row
 export var col : int = 1 setget set_col
 
 func _init():
-
+  position.x = int(floor(position.x/16)) * 16
+  position.y = int(floor(position.y/16)) * 16
   sprite.texture = resource_pack
   sprite.region_enabled = true
   add_child(sprite)

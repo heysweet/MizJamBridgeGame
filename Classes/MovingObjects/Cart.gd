@@ -32,6 +32,7 @@ func map_to_cell(value : int):
   return int(floor(value / 16))
 
 func set_path_to(arr : Array):
+  arr.pop_front()
   var seen_nodes = {}
   seen_nodes[var2str(Vector2(tile_col, tile_row))] = true
   var new_arr = []
@@ -41,7 +42,6 @@ func set_path_to(arr : Array):
     if !(v_str in seen_nodes):
       seen_nodes[v_str] = true
       new_arr.append(v)
-  print(new_arr)
   path_to_city = new_arr
 
 func time_step():
