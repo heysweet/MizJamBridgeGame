@@ -2,8 +2,7 @@
 
 [ext_resource path="res://Classes/Movable.gd" type="Script" id=1]
 
-[node name="Movable" type="Sprite"]
-region_rect = Rect2( 0, 0, 16, 16 )
+[node name="Movable" type="KinematicBody2D"]
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true

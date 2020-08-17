@@ -46,4 +46,4 @@ func set_path_to(arr : Array):
 
 func time_step():
   if len(path_to_city) > 0:
-    do_move_to(path_to_city.pop_front())
+    do_move_to(path_to_city.pop_front(), Vector2.ZERO)

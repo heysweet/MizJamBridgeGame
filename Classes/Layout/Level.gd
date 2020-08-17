@@ -30,7 +30,7 @@ func _input(event: InputEvent):
   if event is InputEventMouseButton:
     if event.button_index == BUTTON_LEFT and event.pressed:
       var cart = $Carts.get_children()[0]
-      var goal = RedCities[0].position #event.position
+      var goal = event.position
       var cart_pos = cart.position
       cart_pos.y += 8
       var path = $Navigation2D.get_simple_path(cart_pos, goal, false)
