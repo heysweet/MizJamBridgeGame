@@ -25,14 +25,16 @@ func set_tile_row(row):
   if Engine.editor_hint:
     position = target_position
 
-func do_move(move_vector):
+func do_move_to(target_vector : Vector2):
+  set_tile_col(target_vector.x)
+  set_tile_row(target_vector.y)
+  var delta = Vector2(target_vector.x - position.x, target_vector.y - position.y)
+  update_tween(delta.normalized())
+
+func do_move(move_vector : Vector2):
   if move_vector.x == 0 and move_vector.y == 0:
     return
-  if move_vector.x != 0:
-    set_tile_col(tile_col + move_vector.x)
-  else:
-    set_tile_row(tile_row + move_vector.y)
-  update_tween(move_vector)
+  do_move_to(Vector2(tile_col + move_vector.x, tile_row + move_vector.y))
 
 func update_tween(move_vector : Vector2):
   tween.interpolate_property(self, "position",

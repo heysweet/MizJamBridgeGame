@@ -19,13 +19,22 @@ func _ready():
     else:
       BlueCities.append(city)
   for cart in $Carts.get_children():
-    print(cart.position)
-    print(RedCities[0].position)
     var path = $Navigation2D.get_simple_path(cart.position, RedCities[0].position, false)
-    print(path)
     cart.set_path_to(path)
 
   pass # Replace with function body.
+
+
+
+func _input(event: InputEvent):
+  if event is InputEventMouseButton:
+    if event.button_index == BUTTON_LEFT and event.pressed:
+      var cart = $Carts.get_children()[0]
+      var goal = event.position
+      var path = $Navigation2D.get_simple_path(cart.position, goal, false)
+      cart.set_path_to(path)
+      #$Line2D.points = PoolVector2Array(path)
+      #$Line2D.show()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
