@@ -11,10 +11,13 @@ __meta__ = {
 }
 
 [node name="Card2" parent="." instance=ExtResource( 2 )]
+modulate = Color( 0.4, 0.8, 0.933333, 1 )
 position = Vector2( 0, 6 )
 z_index = 1
-col = 20
-rank = 1
+row = 16
+col = 19
+suit = 0
+rank = 0
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )

@@ -17,5 +17,15 @@ func _ready():
 
 
 func _on_Player_time_step():
+  var before_pos = {}
+  var after_pos = {}
+  var initial_str = {}
+  for child in get_children():
+    before_pos[child.position] = child
+    initial_str[child] = child.rank
   for child in get_children():
     child.time_step()
+    after_pos[child.position] = child
+  for child in get_children():
+    if before_pos[child.position] != child:
+      child.take_damage(initial_str[child]) 

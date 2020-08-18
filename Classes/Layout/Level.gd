@@ -12,18 +12,13 @@ func _init():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+  var cart_map = {};
   for city in $Cities.get_children():
     if city.suit == Suit.HEART || city.suit == Suit.DIAMOND:
-      print("Appending red")
       RedCities.append(city)
     else:
-      print("Appending blue")
       BlueCities.append(city)
-  print("checking carts")
   for cart in $Carts.get_children():
-    print(cart)
-    print("Level suit check")
-    print(cart.suit)
     if (cart.suit == Suit.HEART || cart.suit == Suit.DIAMOND) && len(RedCities) > 0:
         set_closest_city(RedCities, cart)
     elif (cart.suit == Suit.SPADE || cart.suit == Suit.CLUB) && len(BlueCities) > 0:    
@@ -36,4 +31,4 @@ func set_closest_city(cities, cart):
         var path = $Navigation2D.get_simple_path(cart.position, city.position, false)
         if (!min_path || path.size() < min_path.size()):
             min_path = path
-    cart.set_path_to(min_path) 
+    cart.set_path_to(min_path)
