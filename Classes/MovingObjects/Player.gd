@@ -67,6 +67,7 @@ func destroy_bridge(collision):
     false, # flip_y
     false, # transpose
     Vector2(4, 0))# autotile_coord
+  collision.collider.update_dirty_quadrants()
   emit_signal("bridge_destroy")
     
     

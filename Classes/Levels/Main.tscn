@@ -359,9 +359,9 @@ suit = 3
 rank = 2
 
 [node name="Cart2" parent="Level/Carts" instance=ExtResource( 1 )]
-position = Vector2( 112, 80 )
+position = Vector2( 160, 80 )
 tile_row = 5
-tile_col = 7
+tile_col = 10
 suit = 3
 rank = 7
 
