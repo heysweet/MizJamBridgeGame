@@ -35,6 +35,7 @@ func set_closest_city(cities, cart):
     if (!min_path || path.size() < min_path.size()):
       min_path = path
   cart.set_path_to(min_path) 
+  cart.position.y -= 8
     
 func _on_bridge_destroyed():
   update_cart_pathfinding()

@@ -57,7 +57,6 @@ func try_move(move_vector):
     do_move(move_vector)
     
 func destroy_bridge(collision):
-  emit_signal("time_step")
   var tile_pos = collision.collider.world_to_map(position)
   collision.collider.set_cell(
     tile_pos.x,
@@ -69,7 +68,7 @@ func destroy_bridge(collision):
     Vector2(4, 0))# autotile_coord
   collision.collider.update_dirty_quadrants()
   emit_signal("bridge_destroy")
-    
+  emit_signal("time_step")
     
 func try_interact():
   var collision = move_and_collide(Vector2.ZERO, true, true, true)
