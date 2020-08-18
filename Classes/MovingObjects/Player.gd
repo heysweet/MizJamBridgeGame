@@ -2,7 +2,9 @@ extends "res://Classes/Movable.gd"
 
 var last_key_press = 0
 var debounce_millis = 80
-var queued_move = null
+
+const TYPE_BRIDGE_MOV = 6
+const TYPE_BRIDGE_ATK = -1
 
 signal time_step
 
@@ -13,7 +15,6 @@ func queue_move(movement : Vector2):
   if last_key_press + debounce_millis > now:
     return
   last_key_press = now
-  #queued_move = movement
   try_move(movement)
 
 func _input(ev):
@@ -35,17 +36,44 @@ func _input(ev):
         try_interact()
         return
 
+func get_tile_id(collision):
+  # Find the character's position in tile coordinates
+  var tile_pos = collision.collider.world_to_map(position)
+  # Find the colliding tile position
+  tile_pos -= collision.normal
+  # Get the tile id
+  return collision.collider.get_cellv(tile_pos)
+
 func can_move(move_vector):
   var offset = move_vector * 16;
-  return !move_and_collide(offset, true, true, true)
+  var collision = move_and_collide(offset, true, true, true)
+  if collision and collision.collider is TileMap:
+    return get_tile_id(collision) == TYPE_BRIDGE_MOV
+  return true
 
 func try_move(move_vector):
   if can_move(move_vector):
     do_move(move_vector)
     
-func try_interact():
-  emit_signal("bridge_destroyed")
+func destroy_bridge(collision):
   emit_signal("time_step")
+  var tile_pos = collision.collider.world_to_map(position)
+  collision.collider.set_cell(
+    tile_pos.x,
+    tile_pos.y,
+    6, # tile
+    false, # flip_x
+    false, # flip_y
+    false, # transpose
+    Vector2(4, 0))# autotile_coord
+  emit_signal("bridge_destroyed")
+    
+    
+func try_interact():
+  var collision = move_and_collide(Vector2.ZERO, true, true, true)
+  if collision and collision.collider is TileMap:
+    if get_tile_id(collision) == TYPE_BRIDGE_ATK:
+      destroy_bridge(collision)
 
 func do_move(move_vector):
   .do_move(move_vector)
@@ -54,14 +82,3 @@ func do_move(move_vector):
 # Called when the node enters the scene tree for the first time.
 func _ready():
   target_position = position
-
-"""func _physics_process(time):
-  if queued_move != null:
-    var move = queued_move
-    queued_move = null
-    try_move(move)"""
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#  position.x = target_position.x
-#  Tween
