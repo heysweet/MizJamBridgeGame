@@ -38,9 +38,9 @@ func do_move(move_vector : Vector2):
   do_move_to(Vector2(tile_col + move_vector.x, tile_row + move_vector.y), move_vector)
 
 func update_tween(move_vector : Vector2):
+  tween.interpolate_property(self, "rotation", 0.15 * -move_vector.x, 0, 0.400, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
+  tween.interpolate_property(self, "scale", Vector2(1.1, 1.1), Vector2(1, 1), 0.300, Tween.TRANS_BACK, Tween.EASE_OUT)
   tween.interpolate_property(self, "position",
           position, target_position, 0.130,
-          Tween.EASE_IN_OUT, Tween.EASE_IN_OUT)
-  #tween.interpolate_property(self, "rotation", 0.15 * -move_vector.x, 0, 0.400, Tween.TRANS_ELASTIC, Tween.EASE_OUT)
-  #tween.interpolate_property(self, "scale", Vector2(1.1, 1.1), Vector2(1, 1), 0.300, Tween.TRANS_BACK, Tween.EASE_OUT)
+          2, Tween.EASE_IN_OUT)
   tween.start()

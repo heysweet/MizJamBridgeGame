@@ -5,67 +5,67 @@
 [ext_resource path="res://Classes/MovingObjects/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://1bitpack_kenney_1.1/valley.png" type="Texture" id=4]
 
-[sub_resource type="NavigationPolygon" id=2]
+[sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 16, 13.6444, 4.2792, 13.8596, 4.49555, 4.98917, 16, 5.11691 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
-[sub_resource type="NavigationPolygon" id=3]
+[sub_resource type="NavigationPolygon" id=2]
 vertices = PoolVector2Array( 16, 14.1793, 4.22511, 14.1793, 3.95467, 0, 16, 0 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
-[sub_resource type="NavigationPolygon" id=4]
+[sub_resource type="NavigationPolygon" id=3]
 vertices = PoolVector2Array( 16, 13.9137, 0, 13.8596, 0, 4.93508, 16, 5.09734 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
-[sub_resource type="NavigationPolygon" id=5]
+[sub_resource type="NavigationPolygon" id=4]
 vertices = PoolVector2Array( 0, 16, 12.0514, 16, 11.9974, 5.15326, 0, 4.991 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
-[sub_resource type="NavigationPolygon" id=6]
+[sub_resource type="NavigationPolygon" id=5]
 vertices = PoolVector2Array( 16, 16, 4.20869, 16, 4.20869, 5.25482, 16, 5.25482 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
-[sub_resource type="NavigationPolygon" id=7]
+[sub_resource type="NavigationPolygon" id=6]
 vertices = PoolVector2Array( 11.9268, 4.93508, 4.19228, 4.93508, 4.03002, 16, 12.0891, 16 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
-[sub_resource type="NavigationPolygon" id=8]
+[sub_resource type="NavigationPolygon" id=7]
 vertices = PoolVector2Array( 11.8187, 16, 3.86776, 16, 4.03002, 0, 12.035, 0 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
-[sub_resource type="NavigationPolygon" id=9]
+[sub_resource type="NavigationPolygon" id=8]
 vertices = PoolVector2Array( 11.8728, 0, 4.1382, 0, 4.1382, 13.9089, 11.8728, 13.9089 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
-[sub_resource type="NavigationPolygon" id=10]
+[sub_resource type="NavigationPolygon" id=9]
 vertices = PoolVector2Array( 0, 16, 16, 16, 16, 5.36778, 0, 5.25961 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
-[sub_resource type="NavigationPolygon" id=11]
+[sub_resource type="NavigationPolygon" id=10]
 vertices = PoolVector2Array( 16, 13.9155, 0, 14.0778, 0, 0, 16, 0 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
-[sub_resource type="NavigationPolygon" id=12]
+[sub_resource type="NavigationPolygon" id=11]
 vertices = PoolVector2Array( 0, 13.8007, 12.0186, 13.8007, 12.0727, 0, 0, 0 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
-[sub_resource type="NavigationPolygon" id=13]
+[sub_resource type="NavigationPolygon" id=12]
 vertices = PoolVector2Array( 16, 0, 4.32173, 0, 4.53809, 16, 16, 16 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
-[sub_resource type="NavigationPolygon" id=14]
+[sub_resource type="NavigationPolygon" id=13]
 vertices = PoolVector2Array( 0, 16, 11.8399, 16, 11.894, 0, 0, 0.106853 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
-[sub_resource type="NavigationPolygon" id=15]
+[sub_resource type="NavigationPolygon" id=14]
 vertices = PoolVector2Array( 0, 13.9064, 12.0022, 13.9064, 12.0022, 5.19827, 0, 5.19827 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
-[sub_resource type="NavigationPolygon" id=16]
+[sub_resource type="NavigationPolygon" id=15]
 vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
-[sub_resource type="TileSet" id=1]
+[sub_resource type="TileSet" id=16]
 2/name = "valley.png 2"
 2/texture = ExtResource( 4 )
 2/tex_offset = Vector2( 0, 0 )
@@ -78,7 +78,7 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 2/autotile/tile_size = Vector2( 16, 16 )
 2/autotile/spacing = 1
 2/autotile/occluder_map = [  ]
-2/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 2 ), Vector2( 0, 2 ), SubResource( 3 ), Vector2( 1, 0 ), SubResource( 4 ), Vector2( 1, 1 ), SubResource( 5 ), Vector2( 1, 2 ), SubResource( 6 ), Vector2( 2, 0 ), SubResource( 7 ), Vector2( 2, 1 ), SubResource( 8 ), Vector2( 2, 2 ), SubResource( 9 ), Vector2( 3, 0 ), SubResource( 10 ), Vector2( 3, 1 ), SubResource( 11 ), Vector2( 3, 2 ), SubResource( 12 ), Vector2( 4, 0 ), SubResource( 13 ), Vector2( 4, 1 ), SubResource( 14 ), Vector2( 4, 2 ), SubResource( 15 ), Vector2( 5, 0 ), SubResource( 16 ) ]
+2/autotile/navpoly_map = [ Vector2( 0, 0 ), SubResource( 1 ), Vector2( 0, 2 ), SubResource( 2 ), Vector2( 1, 0 ), SubResource( 3 ), Vector2( 1, 1 ), SubResource( 4 ), Vector2( 1, 2 ), SubResource( 5 ), Vector2( 2, 0 ), SubResource( 6 ), Vector2( 2, 1 ), SubResource( 7 ), Vector2( 2, 2 ), SubResource( 8 ), Vector2( 3, 0 ), SubResource( 9 ), Vector2( 3, 1 ), SubResource( 10 ), Vector2( 3, 2 ), SubResource( 11 ), Vector2( 4, 0 ), SubResource( 12 ), Vector2( 4, 1 ), SubResource( 13 ), Vector2( 4, 2 ), SubResource( 14 ), Vector2( 5, 0 ), SubResource( 15 ) ]
 2/autotile/priority_map = [  ]
 2/autotile/z_index_map = [  ]
 2/occluder_offset = Vector2( 0, 0 )
@@ -104,6 +104,8 @@ script = ExtResource( 2 )
 
 [node name="TileMap" type="TileMap" parent="Navigation2D"]
 z_index = -1
-tile_set = SubResource( 1 )
+tile_set = SubResource( 16 )
 format = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
 [connection signal="time_step" from="Player" to="Carts" method="_on_Player_time_step"]
