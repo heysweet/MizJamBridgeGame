@@ -22,3 +22,6 @@ func set_suit(new_suit):
 func set_rank(new_rank):
   rank = new_rank
   set_col(min_col + rank - 1)
+
+func same_team(obj):
+  return obj.suit & 2 == suit & 2

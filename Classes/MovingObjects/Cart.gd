@@ -1,7 +1,6 @@
 extends "res://Classes/Movable.gd"
 
 tool
-signal hit
 
 enum Suit {HEART = 0, DIAMOND, CLUB, SPADE}
 enum Rank {ACE = 1, TWO, THREE, FOUR, FIVE, SIX, SEVEN, EIGHT, NINE, TEN, JACK, QUEEN, KING}
@@ -40,10 +39,15 @@ func set_path_to(arr : Array):
   path_to_city = new_arr
 
 func take_damage(dmg : int):
-  if suit - dmg <= 0:
+  print(rank)
+  if rank - dmg <= 0:
     queue_free()
   else:
-    suit = suit - dmg
+    set_rank(rank - dmg)
+  print(rank)
+
+func same_team(obj):
+  return $Card2.same_team(obj)
 
 func time_step():
   if len(path_to_city) > 0:
