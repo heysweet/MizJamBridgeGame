@@ -7,6 +7,9 @@ enum Suit {HEART = 0, DIAMOND, CLUB, SPADE}
 const RedCities = []
 const BlueCities = []
 
+export var width = 8
+export var height = 8
+
 func _init():
   pass
 
