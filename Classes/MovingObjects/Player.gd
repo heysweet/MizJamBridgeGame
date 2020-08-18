@@ -7,6 +7,7 @@ const TYPE_BRIDGE_MOV = 6
 const TYPE_BRIDGE_ATK = -1
 
 signal time_step
+signal bridge_destroy
 
 tool
 
@@ -66,7 +67,7 @@ func destroy_bridge(collision):
     false, # flip_y
     false, # transpose
     Vector2(4, 0))# autotile_coord
-  emit_signal("bridge_destroyed")
+  emit_signal("bridge_destroy")
     
     
 func try_interact():

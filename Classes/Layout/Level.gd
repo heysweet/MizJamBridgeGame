@@ -12,7 +12,7 @@ func _init():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-  $Node/Player.connect("on_bridge_destroyed", self, "_on_bridge_destroyed")
+  $Node/Player.connect("bridge_destroy", self, "_on_bridge_destroyed")
   for city in $Cities.get_children():
     if city.suit == Suit.HEART || city.suit == Suit.DIAMOND:
       RedCities.append(city)
@@ -37,5 +37,4 @@ func set_closest_city(cities, cart):
   cart.set_path_to(min_path) 
     
 func _on_bridge_destroyed():
-  print("DESTORY!")
   update_cart_pathfinding()
