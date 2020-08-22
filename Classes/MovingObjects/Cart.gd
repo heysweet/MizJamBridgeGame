@@ -10,6 +10,7 @@ export(Rank) var rank setget set_rank
 
 var time_passed = 0
 var path_to_city = []
+var just_moved = true
 
 func has_path():
   return len(path_to_city)
@@ -67,3 +68,11 @@ func same_team(obj):
 func time_step():
   if len(path_to_city) > 0:
     do_move_to(path_to_city.pop_front(), Vector2.ZERO)
+
+func get_tile_id(collision):
+  # Find the character's position in tile coordinates
+  var tile_pos = collision.collider.world_to_map(position)
+  # Find the colliding tile position
+  tile_pos -= collision.normal
+  # Get the tile id
+  return collision.collider.get_cellv(tile_pos)

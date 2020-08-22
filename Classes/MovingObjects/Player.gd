@@ -2,6 +2,7 @@ extends "res://Classes/Movable.gd"
 
 var last_key_press = 0
 var debounce_millis = 70
+var is_controllable = true
 
 const TYPE_BRIDGE_MOV = 6
 const TYPE_EXIT_ARROW = 7
@@ -12,6 +13,9 @@ signal bridge_destroy
 signal level_exit
 
 tool
+
+func set_controllable(controllable):
+  is_controllable = controllable
 
 func needs_debounce():
   var now = OS.get_ticks_msec()
@@ -26,7 +30,7 @@ func queue_move(movement : Vector2):
   try_move(movement)
 
 func _input(ev):
-  if ev is InputEventKey and ev.is_pressed() and not ev.echo:
+  if is_controllable and ev is InputEventKey and ev.is_pressed() and not ev.echo:
     match (ev.scancode):
       KEY_W,KEY_UP:
         queue_move(Vector2(0, -1))
@@ -54,7 +58,6 @@ func get_tile_id(collision):
 
 func is_movement_on_tile_allowed(collision):
   var tile_id = get_tile_id(collision)
-  print(tile_id)
   match (tile_id):
     TYPE_BRIDGE_MOV:
       return true

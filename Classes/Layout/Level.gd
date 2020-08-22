@@ -7,6 +7,7 @@ var arrow_cells = []
 
 tool
 
+signal restart_level
 signal complete_level
 
 func hide_exit():
@@ -15,10 +16,22 @@ func hide_exit():
   for cell in arrow_cells:
     tile_map.set_cellv(cell, INVISIBLE_LEVEL_ARROW_ID)
 
+func setup_group_listeners():
+  for city in $Cities.get_children():
+    city.connect("start_city_destroy", self, "_on_city_destroy_start")
+    city.connect("city_destroyed", self, "_on_city_destroyed")
+
+func _on_city_destroy_start():
+  $Node/Player.set_controllable(false)
+  
+func _on_city_destroyed():
+  emit_signal("restart_level")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
   VisualServer.set_default_clear_color(Color(0.14,0.17,0.11,1.0))
   hide_exit()
+  setup_group_listeners()
   $Carts.connect("card_kill", self, "_check_level_win")
   $Node/Player.connect("bridge_destroy", self, "_on_bridge_destroyed")
   $Node/Player.connect("level_exit", self, "_fire_level_complete")

@@ -19,7 +19,6 @@ func _on_Player_time_step():
     var prev_loc = before_pos[child]
     var curr_loc = child.target_position
     if len(after_pos[curr_loc]) > 1:
-      print("on same square") 
       for new_resident in after_pos[curr_loc]:
         if !new_resident.same_team(child):
           did_take_damage = true
