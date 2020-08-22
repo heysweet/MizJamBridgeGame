@@ -9,6 +9,7 @@ const TYPE_BRIDGE_ATK = -1
 
 signal time_step
 signal bridge_destroy
+signal level_exit
 
 tool
 
@@ -58,6 +59,7 @@ func is_movement_on_tile_allowed(collision):
     TYPE_BRIDGE_MOV:
       return true
     TYPE_EXIT_ARROW:
+      emit_signal("level_exit")
       return true
   return false
   

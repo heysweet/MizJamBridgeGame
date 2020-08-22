@@ -7,6 +7,8 @@ var arrow_cells = []
 
 tool
 
+signal complete_level
+
 func hide_exit():
   var tile_map = $Navigation2D/TileMap
   arrow_cells = tile_map.get_used_cells_by_id(EXIT_LEVEL_ARROW_ID)
@@ -19,14 +21,18 @@ func _ready():
   hide_exit()
   $Carts.connect("card_kill", self, "_check_level_win")
   $Node/Player.connect("bridge_destroy", self, "_on_bridge_destroyed")
+  $Node/Player.connect("level_exit", self, "_fire_level_complete")
   update_cart_pathfinding()
+
+func _fire_level_complete():
+  emit_signal("complete_level")
 
 func _check_level_win():
   var is_level_won = true
   for cart in $Carts.get_children():
     is_level_won = is_level_won and !cart.has_path()
   if is_level_won:
-    on_level_win()
+    on_level_win_unlock()
 
 func update_cart_pathfinding():
   for cart in $Carts.get_children():
@@ -48,7 +54,7 @@ func set_closest_city(cities, cart):
 func _on_bridge_destroyed():
   update_cart_pathfinding()
 
-func on_level_win():
+func on_level_win_unlock():
   var tile_map = $Navigation2D/TileMap
   for cell in arrow_cells:
     tile_map.set_cellv(cell, EXIT_LEVEL_ARROW_ID)
