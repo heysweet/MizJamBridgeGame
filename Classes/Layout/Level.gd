@@ -21,8 +21,12 @@ func _ready():
   update_cart_pathfinding()
 
 func update_cart_pathfinding():
+  var is_level_won = true
   for cart in $Carts.get_children():
     set_closest_city($Cities.get_children(), cart)
+    is_level_won = is_level_won and !cart.has_path()
+  if is_level_won:
+    on_level_win()
 
 func set_closest_city(cities, cart):
   var min_path

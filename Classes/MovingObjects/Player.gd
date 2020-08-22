@@ -4,6 +4,7 @@ var last_key_press = 0
 var debounce_millis = 70
 
 const TYPE_BRIDGE_MOV = 6
+const TYPE_EXIT_ARROW = 7
 const TYPE_BRIDGE_ATK = -1
 
 signal time_step
@@ -50,11 +51,16 @@ func get_tile_id(collision):
   # Get the tile id
   return collision.collider.get_cellv(tile_pos)
 
-func is_bridge_collision(collision):
+func is_movement_on_tile_allowed(collision):
   var tile_id = get_tile_id(collision)
-  return tile_id == TYPE_BRIDGE_MOV || tile_id == TYPE_BRIDGE_ATK
+  print(tile_id)
+  match (tile_id):
+    TYPE_BRIDGE_MOV, TYPE_BRIDGE_ATK:
+      return true
+    TYPE_EXIT_ARROW:
+      return true
+  return false
   
-
 func can_move(move_vector):
   var offset = move_vector * 16;
   var end_state = position + offset
@@ -62,7 +68,9 @@ func can_move(move_vector):
     return false
   var collision = move_and_collide(offset, true, true, true)
   if collision and collision.collider is TileMap:
-    return is_bridge_collision(collision)
+    if is_movement_on_tile_allowed(collision):
+      return true
+    return false
   return true
 
 func try_move(move_vector):

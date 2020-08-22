@@ -11,6 +11,9 @@ export(Rank) var rank setget set_rank
 var time_passed = 0
 var path_to_city = []
 
+func has_path():
+  return len(path_to_city)
+
 func set_suit(new_suit):
   suit = new_suit
   $Card2.suit = suit
