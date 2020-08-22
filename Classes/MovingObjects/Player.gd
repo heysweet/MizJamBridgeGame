@@ -1,7 +1,7 @@
 extends "res://Classes/Movable.gd"
 
 var last_key_press = 0
-var debounce_millis = 80
+var debounce_millis = 70
 
 const TYPE_BRIDGE_MOV = 6
 const TYPE_BRIDGE_ATK = -1
@@ -11,11 +11,16 @@ signal bridge_destroy
 
 tool
 
-func queue_move(movement : Vector2):
+func needs_debounce():
   var now = OS.get_ticks_msec()
-  if last_key_press + debounce_millis > now:
+  var needs_debounce = (last_key_press + debounce_millis) > now
+  if (!needs_debounce):
+    last_key_press = now
+  return needs_debounce
+
+func queue_move(movement : Vector2):
+  if needs_debounce():
     return
-  last_key_press = now
   try_move(movement)
 
 func _input(ev):
@@ -79,6 +84,8 @@ func destroy_bridge(collision):
   emit_signal("time_step")
     
 func try_interact():
+  if needs_debounce():
+    return
   var collision = move_and_collide(Vector2.ZERO, true, true, true)
   if collision and collision.collider is TileMap:
     if get_tile_id(collision) == TYPE_BRIDGE_ATK:
