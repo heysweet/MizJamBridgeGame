@@ -10,7 +10,7 @@ func setup_level(level):
   level.connect("complete_level", self, "next_level")
   level.connect("restart_level", self, "restart_level")
 
-func add_level(level_num):
+func add_level():
   # Add the next level
   var next_level_resource = load("res://Classes/Levels/Level" + str(level_num) + ".tscn")
   var next_level = next_level_resource.instance()
@@ -21,11 +21,11 @@ func restart_level():
   var level = .get_child(0)
   .remove_child(level)
   level.call_deferred("free")
-  add_level(level_num)
+  add_level()
 
 func next_level():
   var level = .get_child(0)
   .remove_child(level)
   level.call_deferred("free")
   level_num += 1
-  add_level(level_num)
+  add_level()
