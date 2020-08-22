@@ -30,7 +30,6 @@ func ensure_manhattan_movement(arr : Array) -> Array:
   if len(arr) == 0:
     return arr
   var result = []
-  var max_int = 9223372036854775807
   var last_pt = arr[0]
   for pt in arr:
     if pt.x != last_pt.x && pt.y != last_pt.y:
