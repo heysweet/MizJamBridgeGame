@@ -57,7 +57,7 @@ func update_cart_pathfinding():
 func set_closest_city(cities, cart):
   var min_path
   for city in cities:
-    if !cart.same_team(city):
+    if cart.same_team(city):
       continue
     var path = $Navigation2D.get_simple_path(cart.position, city.position, true)
     if (!min_path || path.size() < min_path.size()):
