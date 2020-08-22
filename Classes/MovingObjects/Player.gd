@@ -65,7 +65,7 @@ func try_move(move_vector):
     do_move(move_vector)
     
 func destroy_bridge(collision):
-  var tile_pos = collision.collider.world_to_map(position)
+  var tile_pos = collision.collider.world_to_map(target_position)
   collision.collider.set_cell(
     tile_pos.x,
     tile_pos.y,
