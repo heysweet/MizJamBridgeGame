@@ -399,5 +399,6 @@ z_index = -8
 
 [node name="Player" parent="Node" instance=ExtResource( 9 )]
 position = Vector2( 16, 0 )
+motion/sync_to_physics = false
 tile_col = 1
 [connection signal="time_step" from="Node/Player" to="Carts" method="_on_Player_time_step"]
