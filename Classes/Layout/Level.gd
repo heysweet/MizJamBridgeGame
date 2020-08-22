@@ -24,7 +24,7 @@ func setup_group_listeners():
     city.connect("city_destroyed", self, "_on_city_destroyed")
 
 func _on_city_destroy_start():
-  $Node/Player.set_controllable(false)
+  $Player.set_controllable(false)
   
 func _on_city_destroyed():
   emit_signal("restart_level")
