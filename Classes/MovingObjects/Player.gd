@@ -52,6 +52,9 @@ func is_bridge_collision(collision):
 
 func can_move(move_vector):
   var offset = move_vector * 16;
+  var end_state = position + offset
+  if end_state.x < 0 || end_state.y < 0:
+    return false
   var collision = move_and_collide(offset, true, true, true)
   if collision and collision.collider is TileMap:
     return is_bridge_collision(collision)
