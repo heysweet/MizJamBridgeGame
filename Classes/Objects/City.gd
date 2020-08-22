@@ -6,7 +6,16 @@ var suit_colors = [Color("#66CCEE"), Color("#228833"), Color("#CCBB44"), Color("
 tool
 
 export(Suit) var suit = Suit.HEART setget set_suit
+export var tile_row : int = 0 setget set_tile_row
+export var tile_col : int = 0 setget set_tile_col
 
+func set_tile_col(col):
+  tile_col = col
+  position.x = 16 * tile_col
+  
+func set_tile_row(row):
+  tile_row = row
+  position.y = 16 * tile_row
 
 # Declare member variables here. Examples:
 # var a = 2

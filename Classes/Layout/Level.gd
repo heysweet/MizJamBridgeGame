@@ -5,12 +5,18 @@ const INVISIBLE_LEVEL_ARROW_ID = 8
 
 var arrow_cells = []
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
+tool
+
+func hide_exit():
   var tile_map = $Navigation2D/TileMap
   arrow_cells = tile_map.get_used_cells_by_id(EXIT_LEVEL_ARROW_ID)
   for cell in arrow_cells:
     tile_map.set_cellv(cell, INVISIBLE_LEVEL_ARROW_ID)
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+  VisualServer.set_default_clear_color(Color(0,0,0,1.0))
+  hide_exit()
   $Node/Player.connect("bridge_destroy", self, "_on_bridge_destroyed")
   update_cart_pathfinding()
 
