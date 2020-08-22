@@ -10,8 +10,6 @@ tool
 func _ready():
   if !Engine.editor_hint:
     tween = Tween.new()
-    #set_physics_process(true)
-    #tween.set_tween_process_mode(Tween.TWEEN_PROCESS_PHYSICS)
     .add_child(tween)
     tween.set_owner(get_tree().get_edited_scene_root())
     

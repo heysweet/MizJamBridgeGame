@@ -45,11 +45,20 @@ func set_closest_city(cities, cart):
   for city in cities:
     if !cart.same_team(city):
       continue
-    var path = $Navigation2D.get_simple_path(cart.position, city.position, false)
+    var path = $Navigation2D.get_simple_path(cart.position, city.position, true)
     if (!min_path || path.size() < min_path.size()):
       min_path = path
   cart.set_path_to(min_path) 
   cart.position.y -= 8
+  var points = []
+  for point in cart.path_to_city:
+    points.append(point * 16)
+  var line2d = Line2D.new()
+  line2d.points = points
+  line2d.width = 1
+  line2d.show()
+  .add_child(line2d)
+  
     
 func _on_bridge_destroyed():
   update_cart_pathfinding()

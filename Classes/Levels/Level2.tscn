@@ -390,7 +390,6 @@ tile_row = 6
 tile_col = 3
 
 [node name="City" parent="Cities" instance=ExtResource( 7 )]
-modulate = Color( 0.4, 0.8, 0.933333, 1 )
 position = Vector2( 224, 96 )
 tile_row = 6
 tile_col = 14
@@ -427,6 +426,5 @@ z_index = -8
 
 [node name="Player" parent="Node" instance=ExtResource( 5 )]
 position = Vector2( 144, 0 )
-motion/sync_to_physics = false
 tile_col = 9
 [connection signal="time_step" from="Node/Player" to="Carts" method="_on_Player_time_step"]
