@@ -370,6 +370,7 @@ z_index = -8
 
 [node name="Player" parent="Level/Node" instance=ExtResource( 3 )]
 position = Vector2( 0, -80 )
+motion/sync_to_physics = false
 tile_row = -5
 
 [node name="Camera2D" type="Camera2D" parent="Level"]

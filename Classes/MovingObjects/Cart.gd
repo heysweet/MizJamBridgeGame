@@ -25,6 +25,21 @@ func _process(time):
 func map_to_cell(value : int):
   return int(floor(value / 16))
 
+# Takes any movement path and adds horizontal/vertical movement to avoid diagonals
+func ensure_manhattan_movement(arr : Array) -> Array:
+  if len(arr) == 0:
+    return arr
+  var result = []
+  var max_int = 9223372036854775807
+  var last_pt = arr[0]
+  for pt in arr:
+    if pt.x != last_pt.x && pt.y != last_pt.y:
+      # Move horizonal
+      result.append(Vector2(pt.x, last_pt.y))
+    result.append(pt)
+    last_pt = pt
+  return result
+
 func set_path_to(arr : Array):
   arr.pop_front()
   var seen_nodes = {}
@@ -36,7 +51,7 @@ func set_path_to(arr : Array):
     if !(v_str in seen_nodes):
       seen_nodes[v_str] = true
       new_arr.append(v)
-  path_to_city = new_arr
+  path_to_city = ensure_manhattan_movement(new_arr)
 
 func take_damage(dmg : int):
   print(rank)

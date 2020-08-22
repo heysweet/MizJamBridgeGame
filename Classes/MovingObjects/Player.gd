@@ -45,11 +45,16 @@ func get_tile_id(collision):
   # Get the tile id
   return collision.collider.get_cellv(tile_pos)
 
+func is_bridge_collision(collision):
+  var tile_id = get_tile_id(collision)
+  return tile_id == TYPE_BRIDGE_MOV || tile_id == TYPE_BRIDGE_ATK
+  
+
 func can_move(move_vector):
   var offset = move_vector * 16;
   var collision = move_and_collide(offset, true, true, true)
   if collision and collision.collider is TileMap:
-    return get_tile_id(collision) == TYPE_BRIDGE_MOV
+    return is_bridge_collision(collision)
   return true
 
 func try_move(move_vector):
