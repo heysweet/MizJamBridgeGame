@@ -15,7 +15,7 @@ func hide_exit():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-  VisualServer.set_default_clear_color(Color(0,0,0,1.0))
+  VisualServer.set_default_clear_color(Color(0.14,0.17,0.11,1.0))
   hide_exit()
   $Node/Player.connect("bridge_destroy", self, "_on_bridge_destroyed")
   update_cart_pathfinding()
