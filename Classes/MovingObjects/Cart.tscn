@@ -9,10 +9,8 @@ extents = Vector2( 4.50769, 4.37078 )
 
 [node name="Cart" type="KinematicBody2D"]
 collision_layer = 3
+position = Vector2( 8, 8 )
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Card2" parent="." instance=ExtResource( 2 )]
 modulate = Color( 0.4, 0.8, 0.933333, 1 )
@@ -23,8 +21,8 @@ suit = 0
 rank = 0
 
 [node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, 8 )
 texture = ExtResource( 3 )
-offset = Vector2( 0, 8 )
 region_enabled = true
 region_rect = Rect2( 400, 13, 16, 3 )
 

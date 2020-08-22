@@ -15,13 +15,19 @@ func _ready():
     
 func set_tile_col(col):
   tile_col = col
-  target_position.x = 16 * tile_col
+  target_position.x = (16 * tile_col) + 8
   if Engine.editor_hint:
     position = target_position
   
 func set_tile_row(row):
+  print("Setting row")
+  print("Current position: " + str(position))
+  print("Current target_position: " + str(target_position))
+  print("Current row: " + str(tile_row))
+  print("New row: " + str(row))
   tile_row = row
-  target_position.y = 16 * tile_row
+  target_position.y = (16 * tile_row) + 8
+  print("New target_position: " + str(target_position))
   if Engine.editor_hint:
     position = target_position
 

@@ -50,7 +50,7 @@ func _input(ev):
 
 func get_tile_id(collision):
   # Find the character's position in tile coordinates
-  var tile_pos = collision.collider.world_to_map(position)
+  var tile_pos = collision.collider.world_to_map(target_position)
   # Find the colliding tile position
   tile_pos -= collision.normal
   # Get the tile id
@@ -68,7 +68,7 @@ func is_movement_on_tile_allowed(collision):
   
 func can_move(move_vector):
   var offset = move_vector * 16;
-  var end_state = position + offset
+  var end_state = target_position + offset
   if end_state.x < 0 || end_state.y < 0:
     return false
   var collision = move_and_collide(offset, true, true, true)

@@ -10,6 +10,8 @@ tool
 signal restart_level
 signal complete_level
 
+var colors = [Color(0,255,255), Color(255,0,0),Color(0,255,255), Color(255,0,0),Color(0,255,255), Color(255,0,0)]
+
 func hide_exit():
   var tile_map = $Navigation2D/TileMap
   arrow_cells = tile_map.get_used_cells_by_id(EXIT_LEVEL_ARROW_ID)
@@ -33,8 +35,8 @@ func _ready():
   hide_exit()
   setup_group_listeners()
   $Carts.connect("card_kill", self, "_check_level_win")
-  $Node/Player.connect("bridge_destroy", self, "_on_bridge_destroyed")
-  $Node/Player.connect("level_exit", self, "_fire_level_complete")
+  $Player.connect("bridge_destroy", self, "_on_bridge_destroyed")
+  $Player.connect("level_exit", self, "_fire_level_complete")
   update_cart_pathfinding()
 
 func _fire_level_complete():
@@ -54,7 +56,6 @@ func update_cart_pathfinding():
 
 func set_closest_city(cities, cart):
   var min_path
-  cart.position.y += 8
   for city in cities:
     if !cart.same_team(city):
       continue
@@ -62,14 +63,15 @@ func set_closest_city(cities, cart):
     if (!min_path || path.size() < min_path.size()):
       min_path = path
   cart.set_path_to(min_path) 
-  cart.position.y -= 8
   var points = []
+  points.append(cart.position)
   for point in cart.path_to_city:
     points.append(point * 16)
   var line2d = Line2D.new()
   line2d.points = points
   line2d.width = 1
   line2d.show()
+  line2d.default_color = colors.pop_front()
   .add_child(line2d)
   
     

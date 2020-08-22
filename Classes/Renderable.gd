@@ -17,8 +17,6 @@ func bottom_clip(progress : float):
   draw_me()
 
 func _init():
-  position.x = int(floor(position.x/16)) * 16
-  position.y = int(floor(position.y/16)) * 16
   sprite.texture = resource_pack
   sprite.region_enabled = true
   add_child(sprite)

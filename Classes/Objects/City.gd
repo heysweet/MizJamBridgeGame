@@ -23,11 +23,11 @@ export var tile_col : int = 0 setget set_tile_col
 
 func set_tile_col(col):
   tile_col = col
-  position.x = 16 * tile_col
+  position.x = 16 * tile_col + 8
   
 func set_tile_row(row):
   tile_row = row
-  position.y = 16 * tile_row
+  position.y = 16 * tile_row + 8
 
 func set_suit(new_suit):
   suit = new_suit
