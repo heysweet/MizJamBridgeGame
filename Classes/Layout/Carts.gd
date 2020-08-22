@@ -1,9 +1,12 @@
 extends Node
 
+signal card_kill
+
 func _on_Player_time_step():
   var before_pos = {}
   var after_pos = {}
   var initial_str = {}
+  var did_take_damage = false
   for child in get_children():
     before_pos[child] = child.position
     initial_str[child] = child.rank
@@ -19,6 +22,7 @@ func _on_Player_time_step():
       print("on same square") 
       for new_resident in after_pos[curr_loc]:
         if !new_resident.same_team(child):
+          did_take_damage = true
           child.take_damage(initial_str[new_resident])
       # There are multiple carts in this position,
       # check for conflicts
@@ -27,4 +31,7 @@ func _on_Player_time_step():
         if new_resident == child:
           continue
         if before_pos[new_resident] == curr_loc:
+          did_take_damage = true
           child.take_damage(initial_str[new_resident])
+  if did_take_damage:
+    emit_signal("card_kill")

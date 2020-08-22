@@ -56,12 +56,10 @@ func set_path_to(arr : Array):
   path_to_city = ensure_manhattan_movement(new_arr)
 
 func take_damage(dmg : int):
-  print(rank)
   if rank - dmg <= 0:
     queue_free()
   else:
     set_rank(rank - dmg)
-  print(rank)
 
 func same_team(obj):
   return $Card2.same_team(obj)

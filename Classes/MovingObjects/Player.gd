@@ -55,7 +55,7 @@ func is_movement_on_tile_allowed(collision):
   var tile_id = get_tile_id(collision)
   print(tile_id)
   match (tile_id):
-    TYPE_BRIDGE_MOV, TYPE_BRIDGE_ATK:
+    TYPE_BRIDGE_MOV:
       return true
     TYPE_EXIT_ARROW:
       return true

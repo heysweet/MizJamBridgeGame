@@ -17,16 +17,21 @@ func hide_exit():
 func _ready():
   VisualServer.set_default_clear_color(Color(0.14,0.17,0.11,1.0))
   hide_exit()
+  $Carts.connect("card_kill", self, "_check_level_win")
   $Node/Player.connect("bridge_destroy", self, "_on_bridge_destroyed")
   update_cart_pathfinding()
 
-func update_cart_pathfinding():
+func _check_level_win():
   var is_level_won = true
   for cart in $Carts.get_children():
-    set_closest_city($Cities.get_children(), cart)
     is_level_won = is_level_won and !cart.has_path()
   if is_level_won:
     on_level_win()
+
+func update_cart_pathfinding():
+  for cart in $Carts.get_children():
+    set_closest_city($Cities.get_children(), cart)
+  _check_level_win()
 
 func set_closest_city(cities, cart):
   var min_path
