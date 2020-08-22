@@ -1,7 +1,16 @@
 extends Node2D
 
+const EXIT_LEVEL_ARROW_ID = 7
+const INVISIBLE_LEVEL_ARROW_ID = 8
+
+var arrow_cells = []
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+  var tile_map = $Navigation2D/TileMap
+  arrow_cells = tile_map.get_used_cells_by_id(EXIT_LEVEL_ARROW_ID)
+  for cell in arrow_cells:
+    tile_map.set_cellv(cell, INVISIBLE_LEVEL_ARROW_ID)
   $Node/Player.connect("bridge_destroy", self, "_on_bridge_destroyed")
   update_cart_pathfinding()
 
@@ -23,3 +32,8 @@ func set_closest_city(cities, cart):
     
 func _on_bridge_destroyed():
   update_cart_pathfinding()
+
+func on_level_win():
+  var tile_map = $Navigation2D/TileMap
+  for cell in arrow_cells:
+    tile_map.set_cellv(cell, EXIT_LEVEL_ARROW_ID)
