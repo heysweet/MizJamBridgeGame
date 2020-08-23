@@ -3,12 +3,12 @@ extends Node2D
 var level_num = 0
 var levels = [
   "TitleScreen",
-  #"Intro",
-  #"WarCutscene1",
-  #"WarCutscene2",
-  #"FirstBridge",
-  #"IslandWar",
-  #"Island2",
+  "Intro",
+  "WarCutscene1",
+  "WarCutscene2",
+  "FirstBridge",
+  "IslandWar",
+  "Island2",
   "YouWon"
 ]
 
