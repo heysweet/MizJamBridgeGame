@@ -20,14 +20,12 @@ func setup_level(level):
   level.connect("restart_level", self, "_restart_level")
 
 func start_level():
-  print("start: ", levels[level_num])
   var next_level_resource = load("res://Classes/Levels/" + levels[level_num] + ".tscn")
   var next_level = next_level_resource.instance()
   setup_level(next_level)
   $Level.add_child(next_level)
   
 func _restart_level():
-  print("restarting?")
   for level in $Level.get_children():
     $Level.remove_child(level)
     level.queue_free()
