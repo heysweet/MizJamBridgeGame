@@ -439,15 +439,17 @@ position = Vector2( 40.3432, -15.2949 )
 display_string = "or        W A S D"
 should_type = false
 
-[node name="TextDisplay" parent="." instance=ExtResource( 3 )]
+[node name="Subtitle" parent="." instance=ExtResource( 3 )]
 position = Vector2( 70.0704, 62.4185 )
 display_string = "The Card Game: The Video Game"
 max_width = 100
+delay_secs = 1.1
 
-[node name="TextDisplay2" parent="." instance=ExtResource( 3 )]
+[node name="Title" parent="." instance=ExtResource( 3 )]
 position = Vector2( 69.6544, 36.997 )
 scale = Vector2( 2, 2 )
 display_string = "Bridge:"
+delay_secs = 0.2
 
 [node name="Label" type="Label" parent="."]
 margin_left = 57.9348

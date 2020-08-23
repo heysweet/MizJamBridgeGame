@@ -9,6 +9,12 @@ var arrow_cells = []
 signal restart_level
 signal complete_level
 
+func _input(ev):
+  if ev is InputEventKey and ev.is_pressed() and not ev.echo:
+    match (ev.scancode):
+      KEY_R:
+        emit_signal("restart_level")
+
 var colors = [Color(0,255,255), Color(255,0,0),Color(0,0,255), 
 Color(255,0,0),Color(21,255,255), Color(255,0,0)]
 

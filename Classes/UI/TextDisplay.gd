@@ -5,10 +5,11 @@ export var start_pos : Vector2 = Vector2.ZERO setget set_position
 export var max_width : int = -1 setget set_max_width
 export var enable_text_box = true setget set_enable_text_box
 export var should_type = false
+export var delay_secs = 1.0
 
 var invisible_letters = []
 var typing_speed = 0.03
-var typing_time = -1
+var typing_time = -1.0
 var min_row = 18
 var min_col = 35
 var num_cols = 13
@@ -194,6 +195,7 @@ func rect(pos : Vector2):
 # Called when the node enters the scene tree for the first time.
 func _ready():
   if !.has_node("Letters"): return
+  typing_time = -delay_secs
   render_text()
   if should_type and !Engine.editor_hint:
     invisible_letters = $Letters.get_children()

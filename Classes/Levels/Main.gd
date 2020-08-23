@@ -13,31 +13,32 @@ var levels = [
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-  add_level()
+  start_level()
   
 func setup_level(level):
-  level.connect("complete_level", self, "next_level")
-  level.connect("restart_level", self, "restart_level")
+  level.connect("complete_level", self, "_next_level")
+  level.connect("restart_level", self, "_restart_level")
 
-func add_level():
-  # Add the next level
+func start_level():
+  print("start: ", levels[level_num])
   var next_level_resource = load("res://Classes/Levels/" + levels[level_num] + ".tscn")
   var next_level = next_level_resource.instance()
   setup_level(next_level)
   $Level.add_child(next_level)
   
-func restart_level():
-  var level = $Level.get_child(0)
-  $Level.remove_child(level)
-  level.call_deferred("free")
-  add_level()
+func _restart_level():
+  print("restarting?")
+  for level in $Level.get_children():
+    $Level.remove_child(level)
+    level.queue_free()
+  start_level()
 
-func next_level():
+func _next_level():
   var level = $Level.get_child(0)
   $Level.remove_child(level)
-  level.call_deferred("free")
+  level.queue_free()
   level_num += 1
-  add_level()
+  start_level()
 
 func _on_MusicIntro_finished():
   $MusicLoop.play()
