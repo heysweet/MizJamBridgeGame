@@ -48,7 +48,7 @@ func add_debug_line(points):
   debug_lines.append(line2d)
 
 func hide_exit():
-  if is_level_complete_on_start:
+  if is_level_complete_on_start || Engine.editor_hint:
     return
   var tile_map = $Navigation2D/TileMap
   arrow_cells = tile_map.get_used_cells_by_id(EXIT_LEVEL_ARROW_ID)
