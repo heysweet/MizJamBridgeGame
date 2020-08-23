@@ -423,4 +423,15 @@ col = 25
 position = Vector2( 40.3432, -15.2949 )
 display_string = "or        W A S D"
 should_type = false
+
+[node name="ManFace" parent="." instance=ExtResource( 2 )]
+position = Vector2( 72.9479, 91.3721 )
+row = 10
+col = 27
+
+[node name="TextDisplay" parent="ManFace" instance=ExtResource( 3 )]
+scale = Vector2( 0.75, 0.75 )
+display_string = "Troll! You must keep moving south!"
+start_pos = Vector2( -91, -39 )
+max_width = 30
 [connection signal="time_step" from="Player" to="Carts" method="_on_Player_time_step"]
