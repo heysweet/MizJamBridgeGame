@@ -28,6 +28,7 @@ func _process(time):
 
 func take_damage(dmg : int):
   if rank - dmg <= 0:
+    .get_parent().remove_child(self)
     queue_free()
   else:
     set_rank(rank - dmg)

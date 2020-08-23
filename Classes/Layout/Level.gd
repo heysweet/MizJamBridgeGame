@@ -50,6 +50,7 @@ func _check_level_win():
   var is_level_won = true
   for cart in $Carts.get_children():
     is_level_won = is_level_won and !cart.has_path()
+    print(cart.has_path())
   if is_level_won:
     on_level_win_unlock()
 
