@@ -68,12 +68,11 @@ func set_closest_city(cities, cart):
   for point in cart.path_to_city:
     points.append(point * 16)
   var line2d = Line2D.new()
-  line2d.points = points
+  line2d.points = min_path
   line2d.width = 1
   line2d.show()
   line2d.default_color = colors.pop_front()
   .add_child(line2d)
-  
     
 func _on_bridge_destroyed():
   update_cart_pathfinding()

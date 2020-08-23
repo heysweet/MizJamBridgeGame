@@ -28,6 +28,56 @@ func _process(time):
   
 func map_to_cell(value : int):
   return int(floor(value / 16))
+  
+func interpolate_lines(arr: Array) -> Array:
+  var points = []
+  var last_pt = null
+  for i in range(arr.size()):
+    var point = arr[i]
+    ## Skip our first_entry
+    if i == 0:
+      last_pt = point
+      points.append(last_pt)
+      continue
+    points += interpolate_points(last_pt, point)
+    last_pt = point
+    i += 1
+  return points
+    
+func interpolate_points(a: Vector2, b: Vector2) -> Array:
+  # Bressenham's Line Drawing Algorithm
+  var steep = false
+  var swapped = false
+  var points = []
+  # If we're traveling further on y then x, swap
+  if abs(a.x - b.x) < abs(a.y - b.y):
+    for p in [a,b]:
+      var temp = p.x
+      p.x = p.y
+      p.y = temp
+    steep = true
+  # Swap directions
+  if a.x > b.x:
+    var temp = a;
+    a = b;
+    b = temp;
+    swapped = true
+  var x = a.x
+  while x < b.x:
+    var t = float(x - a.x)/float(b.x - a.x)
+    x += 1
+    var y = int(a.y * (1.0-t) + b.y * t)
+    if steep:
+      points.append(Vector2(y, x))
+    else:
+      points.append(Vector2(x, y))
+  if swapped:
+    var temp = points
+    var size = points.size()
+    points = []
+    for i in range(size):
+      points.append(temp[size - i - 1])
+  return points
 
 # Takes any movement path and adds horizontal/vertical movement to avoid diagonals
 func ensure_manhattan_movement(arr : Array) -> Array:
@@ -37,14 +87,13 @@ func ensure_manhattan_movement(arr : Array) -> Array:
   var last_pt = arr[0]
   for pt in arr:
     if pt.x != last_pt.x && pt.y != last_pt.y:
-      # Move horizonal
       result.append(Vector2(pt.x, last_pt.y))
     result.append(pt)
     last_pt = pt
   return result
 
 func set_path_to(arr : Array):
-  arr.pop_front()
+  #arr.pop_front()
   var seen_nodes = {}
   seen_nodes[var2str(Vector2(tile_col, tile_row))] = true
   var new_arr = []
@@ -54,7 +103,7 @@ func set_path_to(arr : Array):
     if !(v_str in seen_nodes):
       seen_nodes[v_str] = true
       new_arr.append(v)
-  path_to_city = ensure_manhattan_movement(new_arr)
+  path_to_city = ensure_manhattan_movement(interpolate_lines(new_arr))
 
 func take_damage(dmg : int):
   if rank - dmg <= 0:
