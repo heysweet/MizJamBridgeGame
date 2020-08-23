@@ -3,6 +3,7 @@ extends Node2D
 const EXIT_LEVEL_ARROW_ID = 7
 const INVISIBLE_LEVEL_ARROW_ID = 8
 
+export var is_level_complete_on_start = false
 var arrow_cells = []
 
 tool
@@ -14,6 +15,8 @@ var colors = [Color(0,255,255), Color(255,0,0),Color(0,0,255),
 Color(255,0,0),Color(21,255,255), Color(255,0,0)]
 
 func hide_exit():
+  if is_level_complete_on_start:
+    return
   var tile_map = $Navigation2D/TileMap
   arrow_cells = tile_map.get_used_cells_by_id(EXIT_LEVEL_ARROW_ID)
   for cell in arrow_cells:

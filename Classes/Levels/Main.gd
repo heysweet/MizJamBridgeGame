@@ -1,10 +1,18 @@
 extends Node2D
 
-var level_num = 1
+var level_num = 0
+var levels = [
+  "Intro",
+  "WarCutscene1",
+  "WarCutscene2",
+  "FirstBridge",
+  "FirstWar",
+  "IslandWar"
+]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-  setup_level(.get_node("Level1"))
+  add_level()
   
 func setup_level(level):
   level.connect("complete_level", self, "next_level")
@@ -12,7 +20,7 @@ func setup_level(level):
 
 func add_level():
   # Add the next level
-  var next_level_resource = load("res://Classes/Levels/Level" + str(level_num) + ".tscn")
+  var next_level_resource = load("res://Classes/Levels/" + levels[level_num] + ".tscn")
   var next_level = next_level_resource.instance()
   setup_level(next_level)
   .add_child(next_level)
