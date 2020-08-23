@@ -51,10 +51,10 @@ func _input(ev):
     var cameraOffset = Vector2(16, 16)
     print("Mouse Click/Unclick at: ", ev.position + cameraOffset)
 
-func get_tile_id(collider):
+func get_tile_id(collider, direction):
   var tilemap = collider
   var hit_pos = $RayCast2D.get_collision_point()
-  var tile_pos = tilemap.world_to_map(hit_pos)
+  var tile_pos = tilemap.world_to_map(hit_pos + direction)
   var tile = tilemap.get_cellv(tile_pos)
   print (tile)
   return tile
@@ -66,8 +66,8 @@ func get_tile_id(collider):
   #print(tile_id)
   #return tile_id
 
-func is_movement_on_tile_allowed(collision):
-  var tile_id = get_tile_id(collision)
+func is_movement_on_tile_allowed(collision, direction):
+  var tile_id = get_tile_id(collision, direction)
   print(tile_id)
   match (tile_id):
     -1: # No tile detected
@@ -86,7 +86,7 @@ func can_move(move_vector):
     return false
   var collision = get_collision(offset)
   if collision != null and collision is TileMap:
-    if is_movement_on_tile_allowed(collision):
+    if is_movement_on_tile_allowed(collision, move_vector):
       print("ALLOWED")
       return true
     print("DISALLOWED")
@@ -123,7 +123,7 @@ func try_interact():
     return
   var collision = get_collision(Vector2(8, 8))
   if collision != null and collision is TileMap:
-    if get_tile_id(collision) == TYPE_BRIDGE:
+    if get_tile_id(collision, Vector2.ZERO) == TYPE_BRIDGE:
       destroy_bridge(collision)
 
 func do_move(move_vector):
