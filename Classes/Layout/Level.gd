@@ -101,7 +101,7 @@ func set_closest_target(targets : Array, aggressor):
   for target in targets:
     if aggressor.same_team(target):
       continue
-    var path = get_grid_path(aggressor.target_position, target.position)
+    var path = get_grid_path(aggressor.position, target.position)
     if (!min_path || path.size() < min_path.size()):
       min_path = path
   if min_path:
@@ -117,9 +117,6 @@ func set_closest_target(targets : Array, aggressor):
   else:
     aggressor.path_to_target = []
 
-func get_path_between(a: Vector2, b: Vector2):
-  pass
-  
 func _on_bridge_destroyed(tile_pos):
   astar.remove_point(_get_id_for_tile(tile_pos))
   for cart in $Carts.get_children():

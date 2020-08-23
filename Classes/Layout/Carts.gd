@@ -7,15 +7,17 @@ func _on_Player_time_step():
   var after_pos = {}
   var initial_str = {}
   var did_take_damage = false
+  var children_cache = []
   for child in get_children():
     before_pos[child] = child.position
     initial_str[child] = child.rank
-  for child in get_children():
+    children_cache.append(child)
+  for child in children_cache:
     child.time_step()
     if !after_pos.has(child.target_position):
       after_pos[child.target_position] = []
     after_pos[child.target_position].append(child)
-  for child in get_children():
+  for child in children_cache:
     var prev_loc = before_pos[child]
     var curr_loc = child.target_position
     # This card and another occupy the same position
