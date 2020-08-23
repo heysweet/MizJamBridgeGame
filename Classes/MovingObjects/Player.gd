@@ -1,7 +1,7 @@
 extends "res://Classes/Movable.gd"
 
 var last_key_press = 0
-var debounce_millis = 70
+var debounce_millis = 120
 var is_controllable = true
 
 const TYPE_BRIDGE_MOV = 6
@@ -58,6 +58,7 @@ func get_tile_id(collision):
 
 func is_movement_on_tile_allowed(collision):
   var tile_id = get_tile_id(collision)
+  print(tile_id)
   match (tile_id):
     TYPE_BRIDGE_MOV:
       return true
@@ -69,10 +70,11 @@ func is_movement_on_tile_allowed(collision):
 func can_move(move_vector):
   var offset = move_vector * 16;
   var end_state = target_position + offset
+  print(end_state)
   if end_state.x < 0 || end_state.y < 0:
     return false
   var collision = move_and_collide(offset, true, true, true)
-  if collision and collision.collider is TileMap:
+  if collision != null and collision.collider is TileMap:
     if is_movement_on_tile_allowed(collision):
       return true
     return false

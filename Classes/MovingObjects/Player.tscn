@@ -4,7 +4,7 @@
 [ext_resource path="res://Classes/Renderable.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 3.4217, 2.99117 )
+extents = Vector2( 2.67551, 2.90489 )
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 8, 8 )
