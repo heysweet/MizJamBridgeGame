@@ -1,6 +1,8 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://Classes/Layout/Carts.gd" type="Script" id=1]
+[ext_resource path="res://Classes/Renderable.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Classes/UI/TextDisplay.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Classes/Layout/Level.gd" type="Script" id=6]
 [ext_resource path="res://1bitpack_kenney_1.1/valley.png" type="Texture" id=7]
 [ext_resource path="res://1bitpack_kenney_1.1/Tilesheet/colored_transparent_packed.png" type="Texture" id=8]
@@ -365,9 +367,6 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 
 [node name="Level1" type="Node2D"]
 script = ExtResource( 6 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="Player" parent="." instance=ExtResource( 9 )]
 position = Vector2( 24, 8 )
@@ -396,4 +395,31 @@ anchor_mode = 0
 current = true
 zoom = Vector2( 0.6, 0.6 )
 numTiles = Vector2( 8, 6 )
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2( 55, 17 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Up" parent="Node2D" instance=ExtResource( 2 )]
+position = Vector2( 0, -16 )
+row = 21
+col = 23
+
+[node name="Left" parent="Node2D" instance=ExtResource( 2 )]
+position = Vector2( -18, 0 )
+row = 21
+col = 26
+
+[node name="Right" parent="Node2D" instance=ExtResource( 2 )]
+position = Vector2( 18, 0 )
+row = 21
+col = 24
+
+[node name="Down" parent="Node2D" instance=ExtResource( 2 )]
+row = 21
+col = 25
+
+[node name="TextDisplay" parent="Node2D" instance=ExtResource( 3 )]
+position = Vector2( 40.3432, -15.2949 )
+display_string = "or        W A S D"
 [connection signal="time_step" from="Player" to="Carts" method="_on_Player_time_step"]
