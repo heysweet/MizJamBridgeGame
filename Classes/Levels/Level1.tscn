@@ -369,7 +369,7 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 script = ExtResource( 6 )
 
 [node name="Player" parent="." instance=ExtResource( 9 )]
-position = Vector2( 24, 0 )
+position = Vector2( 24, 8 )
 tile_col = 1
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
