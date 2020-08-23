@@ -119,7 +119,7 @@ func set_closest_target(targets : Array, aggressor):
       path_arr.append(min_path[i])
     aggressor.path_to_target = path_arr
     # Uncomment to show debug path
-    add_debug_line_tiles(path_arr)
+    # add_debug_line_tiles(path_arr)
   else:
     aggressor.path_to_target = []
 
