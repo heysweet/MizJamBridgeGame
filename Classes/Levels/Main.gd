@@ -24,7 +24,7 @@ func start_level():
   var next_level = next_level_resource.instance()
   setup_level(next_level)
   $Level.add_child(next_level)
-  
+
 func _restart_level():
   for level in $Level.get_children():
     $Level.remove_child(level)
