@@ -431,7 +431,7 @@ suit = 2
 rank = 2
 
 [node name="Cart5" parent="Carts" instance=ExtResource( 4 )]
-position = Vector2( 24, 8 )
+position = Vector2( 24, 0 )
 tile_col = 1
 suit = 2
 rank = 2
@@ -473,6 +473,7 @@ max_width = 35
 
 [node name="SoundCardKill" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 11 )
+bus = "SFX"
 __meta__ = {
 "_editor_description_": ""
 }

@@ -399,37 +399,6 @@ current = true
 zoom = Vector2( 0.6, 0.6 )
 numTiles = Vector2( 8, 6 )
 
-[node name="Node2D" type="Node2D" parent="."]
-position = Vector2( 70.4593, 32.266 )
-scale = Vector2( 0.5, 0.5 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Up" parent="Node2D" instance=ExtResource( 2 )]
-position = Vector2( 0, -16 )
-row = 21
-col = 23
-
-[node name="Left" parent="Node2D" instance=ExtResource( 2 )]
-position = Vector2( -18, 0 )
-row = 21
-col = 26
-
-[node name="Right" parent="Node2D" instance=ExtResource( 2 )]
-position = Vector2( 18, 0 )
-row = 21
-col = 24
-
-[node name="Down" parent="Node2D" instance=ExtResource( 2 )]
-row = 21
-col = 25
-
-[node name="TextDisplay" parent="Node2D" instance=ExtResource( 3 )]
-position = Vector2( 40.3432, -15.2949 )
-display_string = "or        W A S D"
-should_type = false
-
 [node name="ManFace" parent="." instance=ExtResource( 2 )]
 position = Vector2( 90.1464, 108.57 )
 row = 10
@@ -443,6 +412,7 @@ max_width = 30
 
 [node name="SoundCardKill" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 4 )
+bus = "SFX"
 __meta__ = {
 "_editor_description_": ""
 }

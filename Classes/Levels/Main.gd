@@ -2,6 +2,7 @@ extends Node2D
 
 var level_num = 0
 var levels = [
+  "TitleScreen",
   "Intro",
   "WarCutscene1",
   "WarCutscene2",
@@ -23,17 +24,20 @@ func add_level():
   var next_level_resource = load("res://Classes/Levels/" + levels[level_num] + ".tscn")
   var next_level = next_level_resource.instance()
   setup_level(next_level)
-  .add_child(next_level)
+  $Level.add_child(next_level)
   
 func restart_level():
-  var level = .get_child(0)
-  .remove_child(level)
+  var level = $Level.get_child(0)
+  $Level.remove_child(level)
   level.call_deferred("free")
   add_level()
 
 func next_level():
-  var level = .get_child(0)
-  .remove_child(level)
+  var level = $Level.get_child(0)
+  $Level.remove_child(level)
   level.call_deferred("free")
   level_num += 1
   add_level()
+
+func _on_MusicIntro_finished():
+  $MusicLoop.play()

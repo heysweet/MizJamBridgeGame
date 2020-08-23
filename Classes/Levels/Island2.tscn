@@ -433,6 +433,7 @@ numTiles = Vector2( 12, 12 )
 
 [node name="SoundCardKill" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 2 )
+bus = "SFX"
 __meta__ = {
 "_editor_description_": ""
 }

@@ -426,6 +426,7 @@ max_width = 131
 
 [node name="SoundCardKill" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 9 )
+bus = "SFX"
 __meta__ = {
 "_editor_description_": ""
 }

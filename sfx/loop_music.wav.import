@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/loop_music.wav-afe020aa472e9fab2ec1c7fd677d194e.sample"
+
+[deps]
+
+source_file="res://sfx/loop_music.wav"
+dest_files=[ "res://.import/loop_music.wav-afe020aa472e9fab2ec1c7fd677d194e.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0
