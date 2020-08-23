@@ -121,9 +121,6 @@ func _on_bridge_destroyed(tile_pos):
   for cart in $Carts.get_children():
     var curr_tile = cast_point_to_tile(cart.target_position)
     var prev_tile = cast_point_to_tile(cart.last_position)
-    print('checkign cart')
-    print(cart.target_position)
-    print(tile_pos)
     if cast_point_to_tile(cart.target_position) == tile_pos:
       cart.do_move_to(prev_tile, curr_tile - prev_tile)
   update_cart_pathfinding()
