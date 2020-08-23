@@ -11,6 +11,7 @@ export(Rank) var rank setget set_rank
 var time_passed = 0
 var path_to_target = []
 var just_moved = true
+var last_position
 
 func has_path():
   return len(path_to_target)
@@ -38,6 +39,7 @@ func same_team(obj):
 
 func time_step():
   if len(path_to_target) > 0:
+    last_position = target_position
     do_move_to(path_to_target.pop_front(), Vector2.ZERO)
     $SoundCardMove.play()
 

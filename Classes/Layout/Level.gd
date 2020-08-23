@@ -23,9 +23,6 @@ func _input(ev):
       KEY_R:
         emit_signal("restart_level")
 
-var colors = [Color(0,255,255), Color(255,0,0),Color(0,0,255), 
-Color(255,0,0),Color(21,255,255), Color(255,0,0)]
-
 func get_color():
   rand.randomize()
   return Color(rand.randf_range(0, 1), rand.randf_range(0, 1), 
@@ -97,10 +94,6 @@ func update_cart_pathfinding():
     debug_lines.pop_back().queue_free()
   for cart in $Carts.get_children():
     set_closest_target($Cities.get_children(), cart)
-    # Fallback to a close cart
-    # TODO
-#    if !cart.has_path():
-#      set_closest_target($Carts.get_children(), cart)
   _check_level_win()
   
 func set_closest_target(targets : Array, aggressor):
@@ -123,11 +116,16 @@ func set_closest_target(targets : Array, aggressor):
   else:
     aggressor.path_to_target = []
 
-func map_to_cell(value : int):
-  return int(floor(value / 16))
-
 func _on_bridge_destroyed(tile_pos):
   astar.remove_point(_get_id_for_tile(tile_pos))
+  for cart in $Carts.get_children():
+    var curr_tile = cast_point_to_tile(cart.target_position)
+    var prev_tile = cast_point_to_tile(cart.last_position)
+    print('checkign cart')
+    print(cart.target_position)
+    print(tile_pos)
+    if cast_point_to_tile(cart.target_position) == tile_pos:
+      cart.do_move_to(prev_tile, curr_tile - prev_tile)
   update_cart_pathfinding()
 
 func show_arrows():
@@ -140,6 +138,9 @@ func on_level_win_unlock():
   
 func cast_point_to_tile(point):
   return Vector2(floor(point.x / 16), floor(point.y / 16))
+  
+func cast_tile_to_point(tile):
+  return tile * 16
   
 func prepare_grid():
   var used_cells = $Navigation2D/TileMap.get_used_cells()
