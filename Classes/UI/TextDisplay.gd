@@ -4,7 +4,11 @@ export var display_string : String = "Test text." setget set_message
 export var start_pos : Vector2 = Vector2.ZERO setget set_position
 export var max_width : int = -1 setget set_max_width
 export var enable_text_box = true setget set_enable_text_box
+export var should_type = false
 
+var invisible_letters = []
+var typing_speed = 0.03
+var typing_time = -1
 var min_row = 18
 var min_col = 35
 var num_cols = 13
@@ -152,7 +156,9 @@ func line_fit(word, pos):
 
 func render_text():
   for child in get_children():
+    .remove_child(child)
     child.queue_free()
+    
   var pos = start_pos 
   for word in display_string.split(' '):
     pos = render_word(word, pos)
@@ -182,3 +188,15 @@ func rect(pos : Vector2):
 # Called when the node enters the scene tree for the first time.
 func _ready():
   render_text()
+  if should_type and !Engine.editor_hint:
+    invisible_letters = .get_children()
+    for letter in invisible_letters:
+      letter.visible = false
+
+func _process(delta):
+  typing_time += delta
+  if typing_time > typing_speed:
+    typing_time = 0
+    var letter : Renderable = invisible_letters.pop_front()
+    if letter != null:
+      letter.visible = true

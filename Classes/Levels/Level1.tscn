@@ -369,7 +369,7 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 script = ExtResource( 6 )
 
 [node name="Player" parent="." instance=ExtResource( 9 )]
-position = Vector2( 24, 8 )
+position = Vector2( 24, 0 )
 tile_col = 1
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
@@ -422,4 +422,5 @@ col = 25
 [node name="TextDisplay" parent="Node2D" instance=ExtResource( 3 )]
 position = Vector2( 40.3432, -15.2949 )
 display_string = "or        W A S D"
+should_type = false
 [connection signal="time_step" from="Player" to="Carts" method="_on_Player_time_step"]

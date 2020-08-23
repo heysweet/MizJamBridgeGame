@@ -8,3 +8,4 @@ display_string = "How is this looking okay"
 start_pos = Vector2( 0, 6 )
 max_width = 150
 enable_text_box = false
+should_type = true
