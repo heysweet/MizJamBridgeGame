@@ -52,38 +52,44 @@ func _check_level_win():
 
 func update_cart_pathfinding():
   for cart in $Carts.get_children():
-    set_closest_city($Cities.get_children(), cart)
+    set_closest_target($Cities.get_children(), cart)
+    # Fallback to a close cart
+    # TODO
+#    if !cart.has_path():
+#      set_closest_target($Carts.get_children(), cart)
   _check_level_win()
-
-func set_closest_city(cities, cart):
-  var min_path
+  
+func set_closest_target(targets : Array, aggressor):
   var offset = Vector2(8, 8) 
-  for city in cities:
-    if cart.same_team(city):
+  var min_path
+  for target in targets:
+    if aggressor.same_team(target):
       continue
-    var path = $Navigation2D.get_simple_path(cart.position - offset, 
-      city.position - offset, true)
+    var path = $Navigation2D.get_simple_path(aggressor.position - offset, 
+      target.position - offset, true)
     if (!min_path || path.size() < min_path.size()):
       min_path = path
-  cart.path_to_city = get_grid_path_to(min_path)
+  if min_path:
+    aggressor.path_to_target = get_grid_path_to(min_path)
+
 #  Uncomment the below with ctrl+K to show lines for debugging
-#  var points = []
-#
-#  points.append(cart.position)
-#  for point in cart.path_to_city:
-#    points.append(point * 16 + offset)
-#  var line2d = Line2D.new()
-#  line2d.points = points
-#  line2d.width = 1
-#  line2d.show()
-#  line2d.default_color = colors.pop_front()
-#  .add_child(line2d)
-#  var line2d2 = Line2D.new()
-#  line2d2.points = min_path
-#  line2d2.width = 1
-#  line2d2.show()
-#  line2d2.default_color = colors.pop_front()
-#  .add_child(line2d2)
+#  if min_path:
+#    var points = []
+#    points.append(aggressor.position)
+#    for point in aggressor.path_to_target:
+#      points.append(point * 16 + offset)
+#    var line2d = Line2D.new()
+#    line2d.points = points
+#    line2d.width = 1
+#    line2d.show()
+#    line2d.default_color = colors.pop_front()
+#    .add_child(line2d)
+#    var line2d2 = Line2D.new()
+#    line2d2.points = min_path
+#    line2d2.width = 1
+#    line2d2.show()
+#    line2d2.default_color = colors.pop_front()
+#    .add_child(line2d2)
 
 func map_to_cell(value : int):
   return int(floor(value / 16))
