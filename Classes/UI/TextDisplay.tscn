@@ -4,6 +4,6 @@
 
 [node name="TextDisplay" type="Node2D"]
 script = ExtResource( 1 )
-display_string = "The title of the game will be... Bridge: The Card Game: The Video Game!"
-start_pos = Vector2( 20, 20 )
-max_width = 200
+display_string = "Test the letters in a way that"
+start_pos = Vector2( 0, 6 )
+max_width = 50

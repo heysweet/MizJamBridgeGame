@@ -8,6 +8,7 @@ var min_row = 18
 var min_col = 35
 var num_cols = 13
 var a_ord = 'a'.ord_at(0)
+var enable_char_split = false
 
 const LINE_HEIGHT = 12
 
@@ -111,7 +112,7 @@ func render_character(character : String, pos : Vector2):
     row_col = get_letter_row_col(c)
   var width = get_char_width(character)
   var x_offset = 0.5 * width
-  if max_width != -1 and pos.x + width > max_width:
+  if enable_char_split and max_width != -1 and pos.x + width > max_width:
     pos.x = start_pos.x
     pos.y += LINE_HEIGHT
   pos.x += x_offset
@@ -150,17 +151,6 @@ func render_text():
   for word in display_string.split(' '):
     pos = render_word(word, pos)
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
   render_text()
-  create_renderable(Vector2(1, 1), Vector2(10, 10))
-  pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#  pass
