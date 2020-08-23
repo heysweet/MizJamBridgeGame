@@ -3,12 +3,14 @@ extends Node2D
 export var display_string : String = "Test text." setget set_message
 export var start_pos : Vector2 = Vector2.ZERO setget set_position
 export var max_width : int = -1 setget set_max_width
+export var enable_text_box = true setget set_enable_text_box
 
 var min_row = 18
 var min_col = 35
 var num_cols = 13
 var a_ord = 'a'.ord_at(0)
 var enable_char_split = false
+var preview_pos = Vector2.ZERO
 
 const LINE_HEIGHT = 12
 
@@ -75,6 +77,10 @@ func set_message(new_message : String):
   if display_string != new_message:
     display_string = new_message
     render_text()
+    
+func set_enable_text_box(is_enabled):
+  enable_text_box = is_enabled
+  render_text()
 
 func create_renderable(row_col, pos) -> Renderable:
   var new_renderable = Renderable.new()
@@ -150,6 +156,28 @@ func render_text():
   var pos = start_pos 
   for word in display_string.split(' '):
     pos = render_word(word, pos)
+  preview_pos = pos
+   
+func _draw():
+  if enable_text_box:
+    rect(preview_pos)
+    
+func rect(pos : Vector2):
+  var outline = Color(0.4, 0, 0.35)
+  var thickness = 1.0
+  var poly = []
+  var origin = start_pos
+  origin.y -= 8
+  var size = Vector2(max_width, pos.y + 12)
+  var points = [
+    origin,
+    Vector2(origin.x, origin.y + size.y),
+    origin + size,
+    Vector2(origin.x + size.x, origin.y),
+    origin
+  ]
+  for i in range(1, points.size()):
+    draw_line(points[i-1], points[i], outline, thickness)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
