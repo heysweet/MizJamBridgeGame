@@ -18,13 +18,18 @@ func _on_Player_time_step():
   for child in get_children():
     var prev_loc = before_pos[child]
     var curr_loc = child.target_position
+    # This card and another occupy the same position
     if len(after_pos[curr_loc]) > 1:
       for new_resident in after_pos[curr_loc]:
         if !new_resident.same_team(child):
           did_take_damage = true
           child.take_damage(initial_str[new_resident])
-      # There are multiple carts in this position,
-      # check for conflicts
+        else:
+          if child.rank < new_resident.rank:
+            child.take_damage(child.rank)
+          else:
+            child.rank += new_resident.rank
+    # Two ships passed in the night, but it ended badly
     if after_pos.has(prev_loc) && len(after_pos[prev_loc]) > 0:
       for new_resident in after_pos[prev_loc]:
         if new_resident == child:

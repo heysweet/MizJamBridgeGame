@@ -26,6 +26,7 @@ func set_tile_row(row):
     position = target_position
 
 func do_move_to(target_vector : Vector2, delta: Vector2):
+  print(str(self) + ":" + str(target_vector))
   set_tile_col(target_vector.x)
   set_tile_row(target_vector.y)
   update_tween(delta)

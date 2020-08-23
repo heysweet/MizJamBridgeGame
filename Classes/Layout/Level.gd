@@ -101,7 +101,7 @@ func set_closest_target(targets : Array, aggressor):
   for target in targets:
     if aggressor.same_team(target):
       continue
-    var path = get_grid_path(aggressor.position, target.position)
+    var path = get_grid_path(aggressor.target_position, target.position)
     if (!min_path || path.size() < min_path.size()):
       min_path = path
   if min_path:
@@ -112,17 +112,22 @@ func set_closest_target(targets : Array, aggressor):
       path_arr.append(min_path[i])
     aggressor.path_to_target = path_arr
     # Uncomment to show debug path
-    # add_debug_line_tiles(path_arr)
+    if Engine.editor_hint:
+      add_debug_line_tiles(path_arr)
   else:
     aggressor.path_to_target = []
 
+func get_path_between(a: Vector2, b: Vector2):
+  pass
+  
 func _on_bridge_destroyed(tile_pos):
   astar.remove_point(_get_id_for_tile(tile_pos))
   for cart in $Carts.get_children():
-    var curr_tile = cast_point_to_tile(cart.target_position)
-    var prev_tile = cast_point_to_tile(cart.last_position)
-    if cast_point_to_tile(cart.target_position) == tile_pos:
-      cart.do_move_to(prev_tile, curr_tile - prev_tile)
+    if cart.last_position:
+      var curr_tile = cast_point_to_tile(cart.target_position)
+      var prev_tile = cast_point_to_tile(cart.last_position)
+      if cast_point_to_tile(cart.target_position) == tile_pos:
+        cart.do_move_to(prev_tile, curr_tile - prev_tile)
   update_cart_pathfinding()
 
 func show_arrows():

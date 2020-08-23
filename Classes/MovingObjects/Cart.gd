@@ -13,6 +13,9 @@ var path_to_target = []
 var just_moved = true
 var last_position
 
+func _ready():
+  self.connect("complete_level", self, "_next_level")
+
 func has_path():
   return len(path_to_target)
 
