@@ -2,6 +2,9 @@ extends Node2D
 
 const EXIT_LEVEL_ARROW_ID = 7
 const INVISIBLE_LEVEL_ARROW_ID = 8
+const VALLEY_TILE_ID = 2
+const BRIDGE_TILE_ID = 6
+const TRAVERSABLE_TILE_IDS = [VALLEY_TILE_ID, BRIDGE_TILE_ID]
 
 export var is_level_complete_on_start = false
 var arrow_cells = []
@@ -84,7 +87,6 @@ func _check_level_win():
   var is_level_won = true
   for cart in $Carts.get_children():
     is_level_won = is_level_won and !cart.has_path()
-    print(cart.has_path())
   if is_level_won:
     on_level_win_unlock()
 
@@ -138,10 +140,17 @@ func cast_point_to_tile(point):
   return Vector2(floor(point.x / 16), floor(point.y / 16))
   
 func prepare_grid():
-  var traversable_tiles = $Navigation2D/TileMap.get_used_cells()
+  var used_cells = $Navigation2D/TileMap.get_used_cells()
+  var traversable_tiles = []
+  for tile in used_cells:
+    var tile_type = $Navigation2D/TileMap.get_cellv(tile)
+    if tile_type in TRAVERSABLE_TILE_IDS:
+      traversable_tiles.append(tile)
+  # Add points
   for tile in traversable_tiles:
     var tile_id = _get_id_for_tile(tile)
     astar.add_point(tile_id, Vector2(tile.x, tile.y))
+  # Add connections
   for tile in traversable_tiles:
     var tile_id = _get_id_for_tile(tile)
     for x in range(2):
