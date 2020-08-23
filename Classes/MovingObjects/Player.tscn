@@ -14,6 +14,7 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="."]
+centered = false
 script = ExtResource( 2 )
 row = 3
 col = 24
