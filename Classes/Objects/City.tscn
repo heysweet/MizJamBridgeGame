@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Classes/Objects/City.gd" type="Script" id=1]
 [ext_resource path="res://Classes/Renderable.tscn" type="PackedScene" id=2]
+[ext_resource path="res://sfx/CityDestroy.wav" type="AudioStream" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4.66268, 4.62706 )
 
 [node name="City2" type="Area2D"]
 modulate = Color( 0.4, 0.8, 0.933333, 1 )
+position = Vector2( 8, 8 )
 collision_layer = 3
 script = ExtResource( 1 )
 
@@ -17,4 +19,7 @@ col = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="SoundDestroy" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
 [connection signal="body_entered" from="." to="." method="_on_City2_body_entered"]

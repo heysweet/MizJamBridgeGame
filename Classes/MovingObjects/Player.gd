@@ -56,7 +56,7 @@ func get_tile_id(collider, direction):
   var hit_pos = $RayCast2D.get_collision_point()
   var tile_pos = tilemap.world_to_map(hit_pos + direction)
   var tile = tilemap.get_cellv(tile_pos)
-  print("TileId: ", tile)
+  # print("TileId: ", tile)
   return tile
 
 func is_movement_on_tile_allowed(collision, direction):
@@ -86,6 +86,9 @@ func can_move(move_vector):
 func try_move(move_vector):
   if can_move(move_vector):
     do_move(move_vector)
+    $SoundMove.play()
+  else:
+    $SoundFailMove.play()
     
 func destroy_bridge(map_collider):
   var tile_pos = map_collider.world_to_map(target_position)
@@ -100,6 +103,7 @@ func destroy_bridge(map_collider):
   map_collider.update_dirty_quadrants()
   emit_signal("bridge_destroy")
   emit_signal("time_step")
+  $SoundDestroyBridge.play()
     
 func get_collision(delta : Vector2):
   var raycast = $RayCast2D

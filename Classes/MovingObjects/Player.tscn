@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Classes/MovingObjects/Player.gd" type="Script" id=1]
 [ext_resource path="res://Classes/Renderable.gd" type="Script" id=2]
+[ext_resource path="res://sfx/Walk.wav" type="AudioStream" id=3]
+[ext_resource path="res://sfx/FailMove.wav" type="AudioStream" id=4]
+[ext_resource path="res://sfx/BridgeDestroy.wav" type="AudioStream" id=5]
 
 [node name="Player" type="Node2D"]
 position = Vector2( 8, 8 )
@@ -15,3 +18,12 @@ col = 24
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 cast_to = Vector2( 0, 0 )
+
+[node name="SoundFailMove" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+
+[node name="SoundMove" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+
+[node name="SoundDestroyBridge" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )

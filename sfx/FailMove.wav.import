@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/FailMove.wav-0bcad4179d26ba1deff573f66072a3a1.sample"
+
+[deps]
+
+source_file="res://sfx/FailMove.wav"
+dest_files=[ "res://.import/FailMove.wav-0bcad4179d26ba1deff573f66072a3a1.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

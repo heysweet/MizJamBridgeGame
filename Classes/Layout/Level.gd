@@ -36,10 +36,15 @@ func _ready():
   VisualServer.set_default_clear_color(Color(0.14,0.17,0.11,1.0))
   hide_exit()
   setup_group_listeners()
-  $Carts.connect("card_kill", self, "_check_level_win")
+  $Carts.connect("card_kill", self, "_card_kill")
   $Player.connect("bridge_destroy", self, "_on_bridge_destroyed")
   $Player.connect("level_exit", self, "_fire_level_complete")
   update_cart_pathfinding()
+
+func _card_kill():
+  if .has_node("SoundCardKill"):
+    $SoundCardKill.play()
+  _check_level_win()
 
 func _fire_level_complete():
   emit_signal("complete_level")

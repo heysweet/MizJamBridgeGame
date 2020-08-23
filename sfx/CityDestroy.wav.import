@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/CityDestroy.wav-48d100e2f023ff23b4be753d41088e97.sample"
+
+[deps]
+
+source_file="res://sfx/CityDestroy.wav"
+dest_files=[ "res://.import/CityDestroy.wav-48d100e2f023ff23b4be753d41088e97.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

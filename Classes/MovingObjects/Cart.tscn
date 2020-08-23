@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Classes/MovingObjects/Cart.gd" type="Script" id=1]
 [ext_resource path="res://Classes/Objects/Card.tscn" type="PackedScene" id=2]
 [ext_resource path="res://1bitpack_kenney_1.1/Tilesheet/monochrome_transparent_packed.png" type="Texture" id=3]
+[ext_resource path="res://sfx/CardMove.wav" type="AudioStream" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 4.50769, 4.37078 )
@@ -29,3 +30,7 @@ region_rect = Rect2( 400, 13, 16, 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
+
+[node name="SoundCardMove" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = -6.047

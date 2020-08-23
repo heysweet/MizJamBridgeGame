@@ -18,6 +18,8 @@ var preview_pos = Vector2.ZERO
 
 const LINE_HEIGHT = 12
 
+tool
+
 var char_map = {
   '?' : {
     'rowCol' : Vector2(37, 13),
@@ -65,30 +67,33 @@ var char_map = {
   }
 }
 
-tool
-
 func set_max_width(width : int):
   if max_width != width:
     max_width = width
-    render_text()
+  if !.has_node("Letters"): return
+  render_text()
 
 func set_position(pos : Vector2, bool_value=true):
   if pos != start_pos:
     start_pos = pos
-    render_text()
+  if !.has_node("Letters"): return
+  render_text()
 
 func set_message(new_message : String):
   if display_string != new_message:
     display_string = new_message
-    render_text()
+  if !.has_node("Letters"): return
+  render_text()
     
 func set_enable_text_box(is_enabled):
   enable_text_box = is_enabled
+  if !.has_node("Letters"): return
   render_text()
 
 func create_renderable(row_col, pos) -> Renderable:
+  if !.has_node("Letters"): return null
   var new_renderable = Renderable.new()
-  .add_child(new_renderable)
+  $Letters.add_child(new_renderable)
   new_renderable.set_row(row_col.y)
   new_renderable.set_col(row_col.x)
   new_renderable.position = pos
@@ -155,8 +160,9 @@ func line_fit(word, pos):
   return pos.x + width < max_width
 
 func render_text():
-  for child in get_children():
-    .remove_child(child)
+  if !.has_node("Letters"): return
+  for child in $Letters.get_children():
+    $Letters.remove_child(child)
     child.queue_free()
     
   var pos = start_pos 
@@ -187,9 +193,10 @@ func rect(pos : Vector2):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+  if !.has_node("Letters"): return
   render_text()
   if should_type and !Engine.editor_hint:
-    invisible_letters = .get_children()
+    invisible_letters = $Letters.get_children()
     for letter in invisible_letters:
       letter.visible = false
 
@@ -200,3 +207,10 @@ func _process(delta):
     var letter : Renderable = invisible_letters.pop_front()
     if letter != null:
       letter.visible = true
+      var sound = $SoundTyping
+      if (sound != null):
+        sound.position = letter.position
+        var random_variation = 0.12
+        var min_val = 1.0 - random_variation
+        sound.set_pitch_scale(min_val + (random_variation * 2 * randf()))
+        sound.play()

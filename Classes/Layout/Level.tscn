@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://Classes/Layout/Level.gd" type="Script" id=1]
 [ext_resource path="res://Classes/Layout/Carts.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://1bitpack_kenney_1.1/valley.png" type="Texture" id=4]
 [ext_resource path="res://1bitpack_kenney_1.1/Tilesheet/colored_transparent_packed.png" type="Texture" id=5]
 [ext_resource path="res://Classes/Layout/Camera.tscn" type="PackedScene" id=6]
+[ext_resource path="res://sfx/CardKill.wav" type="AudioStream" id=7]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -382,4 +383,7 @@ format = 1
 
 [node name="Camera" parent="." instance=ExtResource( 6 )]
 zoom = Vector2( 2, 2 )
+
+[node name="SoundCardKill" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 7 )
 [connection signal="time_step" from="Player" to="Carts" method="_on_Player_time_step"]

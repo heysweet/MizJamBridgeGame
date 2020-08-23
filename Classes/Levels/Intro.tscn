@@ -1,8 +1,9 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://Classes/Layout/Carts.gd" type="Script" id=1]
 [ext_resource path="res://Classes/Renderable.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Classes/UI/TextDisplay.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sfx/CardKill.wav" type="AudioStream" id=4]
 [ext_resource path="res://Classes/Layout/Level.gd" type="Script" id=6]
 [ext_resource path="res://1bitpack_kenney_1.1/valley.png" type="Texture" id=7]
 [ext_resource path="res://1bitpack_kenney_1.1/Tilesheet/colored_transparent_packed.png" type="Texture" id=8]
@@ -434,9 +435,15 @@ position = Vector2( 90.1464, 108.57 )
 row = 10
 col = 27
 
-[node name="TextDisplay" parent="ManFace" instance=ExtResource( 3 )]
+[node name="TextDisplay2" parent="ManFace" instance=ExtResource( 3 )]
 scale = Vector2( 0.75, 0.75 )
 display_string = "Troll! You must keep moving south!"
 start_pos = Vector2( -91, -39 )
 max_width = 30
+
+[node name="SoundCardKill" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+__meta__ = {
+"_editor_description_": ""
+}
 [connection signal="time_step" from="Player" to="Carts" method="_on_Player_time_step"]

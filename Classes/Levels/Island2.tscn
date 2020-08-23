@@ -1,6 +1,7 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://Classes/Layout/Carts.gd" type="Script" id=1]
+[ext_resource path="res://sfx/CardKill.wav" type="AudioStream" id=2]
 [ext_resource path="res://Classes/MovingObjects/Cart.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Classes/Objects/City.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Classes/Layout/Level.gd" type="Script" id=6]
@@ -429,4 +430,10 @@ anchor_mode = 0
 current = true
 zoom = Vector2( 1.2, 1.2 )
 numTiles = Vector2( 12, 12 )
+
+[node name="SoundCardKill" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 2 )
+__meta__ = {
+"_editor_description_": ""
+}
 [connection signal="time_step" from="Player" to="Carts" method="_on_Player_time_step"]

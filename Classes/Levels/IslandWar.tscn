@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://Classes/Layout/Carts.gd" type="Script" id=1]
 [ext_resource path="res://Classes/Layout/Camera.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://1bitpack_kenney_1.1/Tilesheet/colored_transparent_packed.png" type="Texture" id=6]
 [ext_resource path="res://Classes/MovingObjects/Cart.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Classes/Objects/City.tscn" type="PackedScene" id=8]
+[ext_resource path="res://sfx/CardKill.wav" type="AudioStream" id=9]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -410,4 +411,10 @@ tile_data = PoolIntArray( 0, 2, 131073, 1, 2, 3, 2, 2, 3, 3, 2, 3, 4, 2, 3, 5, 2
 [node name="Camera" parent="Level" instance=ExtResource( 2 )]
 zoom = Vector2( 2.2, 2.2 )
 numTiles = Vector2( 21, 22 )
+
+[node name="SoundCardKill" type="AudioStreamPlayer2D" parent="Level"]
+stream = ExtResource( 9 )
+__meta__ = {
+"_editor_description_": ""
+}
 [connection signal="time_step" from="Level/Player" to="Level/Carts" method="_on_Player_time_step"]

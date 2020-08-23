@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://Classes/Layout/Carts.gd" type="Script" id=1]
 [ext_resource path="res://Classes/Renderable.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://1bitpack_kenney_1.1/Tilesheet/colored_transparent_packed.png" type="Texture" id=8]
 [ext_resource path="res://Classes/MovingObjects/Player.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Classes/Layout/Camera.tscn" type="PackedScene" id=10]
+[ext_resource path="res://sfx/CardKill.wav" type="AudioStream" id=11]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -402,7 +403,7 @@ tile_col = 3
 script = ExtResource( 1 )
 
 [node name="Cart" parent="Carts" instance=ExtResource( 4 )]
-position = Vector2( 0, 56 )
+position = Vector2( 8, 56 )
 tile_row = 3
 suit = 2
 rank = 3
@@ -469,4 +470,10 @@ scale = Vector2( 0.7, 0.7 )
 display_string = "If a single city is lost I will consider you a failure! How is a simple Bridge Troll supposed to stop war...?"
 start_pos = Vector2( -91, -39 )
 max_width = 35
+
+[node name="SoundCardKill" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 11 )
+__meta__ = {
+"_editor_description_": ""
+}
 [connection signal="time_step" from="Player" to="Carts" method="_on_Player_time_step"]

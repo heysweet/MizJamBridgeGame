@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://Classes/Layout/Carts.gd" type="Script" id=1]
 [ext_resource path="res://Classes/Layout/Camera.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Classes/MovingObjects/Cart.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Classes/Objects/City.tscn" type="PackedScene" id=7]
 [ext_resource path="res://1bitpack_kenney_1.1/Tilesheet/colored_transparent_packed.png" type="Texture" id=8]
+[ext_resource path="res://sfx/CardKill.wav" type="AudioStream" id=9]
 [ext_resource path="res://Classes/UI/TextDisplay.tscn" type="PackedScene" id=10]
 
 [sub_resource type="NavigationPolygon" id=1]
@@ -422,4 +423,10 @@ numTiles = Vector2( 20, 12 )
 position = Vector2( 4.25066, 3.40052 )
 display_string = "You must prevent war by destroying bridges of course! Destroy that bridge!!"
 max_width = 131
+
+[node name="SoundCardKill" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+__meta__ = {
+"_editor_description_": ""
+}
 [connection signal="time_step" from="Player" to="Carts" method="_on_Player_time_step"]

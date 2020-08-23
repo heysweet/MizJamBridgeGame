@@ -58,6 +58,7 @@ func destroy_city():
   base_position = position
   destroy_time = 0
   emit_signal("start_city_destroy")
+  $SoundDestroy.play()
 
 func _on_City2_body_entered(body):
   if !(body is TileMap):

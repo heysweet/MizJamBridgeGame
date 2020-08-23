@@ -39,6 +39,7 @@ func same_team(obj):
 func time_step():
   if len(path_to_target) > 0:
     do_move_to(path_to_target.pop_front(), Vector2.ZERO)
+    $SoundCardMove.play()
 
 func get_tile_id(collision):
   # Find the character's position in tile coordinates
