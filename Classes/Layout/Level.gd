@@ -5,6 +5,9 @@ const INVISIBLE_LEVEL_ARROW_ID = 8
 
 export var is_level_complete_on_start = false
 var arrow_cells = []
+var debug_lines = []
+var rand = RandomNumberGenerator.new()
+var astar = AStar2D.new()
 
 signal restart_level
 signal complete_level
@@ -17,6 +20,27 @@ func _input(ev):
 
 var colors = [Color(0,255,255), Color(255,0,0),Color(0,0,255), 
 Color(255,0,0),Color(21,255,255), Color(255,0,0)]
+
+func get_color():
+  rand.randomize()
+  return Color(rand.randf_range(0, 1), rand.randf_range(0, 1), 
+    rand.randf_range(0, 1))
+
+func add_debug_line_tiles(tiles):
+  var points = []
+  for tile in tiles:
+    points.append(tile * 16)
+  add_debug_line(points)
+
+func add_debug_line(points):
+  var line2d = Line2D.new()
+  line2d.points = points
+  line2d.width = 1
+  line2d.default_color = get_color()
+  line2d.z_index = 99999
+  line2d.show()
+  .add_child(line2d)
+  debug_lines.append(line2d)
 
 func hide_exit():
   if is_level_complete_on_start:
@@ -39,6 +63,7 @@ func _on_city_destroyed():
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+  prepare_grid()
   VisualServer.set_default_clear_color(Color(0.14,0.17,0.11,1.0))
   hide_exit()
   setup_group_listeners()
@@ -64,6 +89,8 @@ func _check_level_win():
     on_level_win_unlock()
 
 func update_cart_pathfinding():
+  for debug_line in debug_lines:
+    debug_lines.pop_back().queue_free()
   for cart in $Carts.get_children():
     set_closest_target($Cities.get_children(), cart)
     # Fallback to a close cart
@@ -73,134 +100,30 @@ func update_cart_pathfinding():
   _check_level_win()
   
 func set_closest_target(targets : Array, aggressor):
-  var offset = Vector2(8, 8) 
   var min_path
   for target in targets:
     if aggressor.same_team(target):
       continue
-    var path = $Navigation2D.get_simple_path(aggressor.position - offset, 
-      target.position - offset, true)
+    var path = get_grid_path(aggressor.position, target.position)
     if (!min_path || path.size() < min_path.size()):
       min_path = path
   if min_path:
-    aggressor.path_to_target = get_grid_path_to(min_path)
+    var path_arr = []
+    for i in range(min_path.size()):
+      if i == 0:
+        continue
+      path_arr.append(min_path[i])
+    aggressor.path_to_target = path_arr
+    # Uncomment to show debug path
+    # add_debug_line_tiles(path_arr)
   else:
     aggressor.path_to_target = []
 
-#  Uncomment the below with ctrl+K to show lines for debugging
-#  if min_path:
-#    var points = []
-#    points.append(aggressor.position)
-#    for point in aggressor.path_to_target:
-#      points.append(point * 16 + offset)
-#    var line2d = Line2D.new()
-#    line2d.points = points
-#    line2d.width = 1
-#    line2d.show()
-#    line2d.default_color = colors.pop_front()
-#    .add_child(line2d)
-#    var line2d2 = Line2D.new()
-#    line2d2.points = min_path
-#    line2d2.width = 1
-#    line2d2.show()
-#    line2d2.default_color = colors.pop_front()
-#    .add_child(line2d2)
-
 func map_to_cell(value : int):
   return int(floor(value / 16))
-  
-func interpolate_lines(arr: Array) -> Array:
-  var points = []
-  var last_pt = null
-  for i in range(arr.size()):
-    var point = arr[i]
-    ## Skip our first_entry, as we won't have a last_pt yet
-    if i == 0:
-      last_pt = point
-      points.append(last_pt)
-      continue
-    var interpolated_points = interpolate_points(last_pt, point)
-    # Remove the last point, as it will equal the first in the next line
-    points.pop_back()
-    points += interpolate_points(last_pt, point)
-    last_pt = point
-    i += 1
-  return points
 
-# Bressenham's Line Drawing Algorithm
-func interpolate_points(a: Vector2, b: Vector2) -> Array:
-  var steep = false
-  var swapped = false
-  var points = [] 
-  # If we're traveling further on y then x, temporarily swap axes rather than
-  # duplicating the code modulo using y instead of x
-  if abs(a.x - b.x) < abs(a.y - b.y):
-    a = Vector2(a.y, a.x)
-    b = Vector2(b.y, b.x)
-    steep = true
-  # Ensure we're drawing left-to-right
-  if a.x > b.x:
-    var temp = a
-    a = b
-    b = temp
-    swapped = true
-  var x = a.x
-  var slope = abs(float((b.y - a.y) / (b.x - a.x))) # Slope
-  var accum_error = float(0.0)
-  var y = a.y
-  var y_inc = -1
-  if b.y > a.y:
-    y_inc = 1
-  # Walk along our x-axis
-  while x <= b.x:
-    if steep:
-      points.append(Vector2(y, x))
-    else:
-      points.append(Vector2(x, y))
-    # Every step we check if enough "x" has passed that we should increment our
-    # "y" value.
-    accum_error += slope
-    if (accum_error > 0.5):
-      y += y_inc
-      accum_error -= 1.0
-    x += 1
-  # If we swapped, we'll need to reverse the ordering
-  if swapped:
-    var reversed = []
-    for pt in points:
-      reversed.push_front(pt)
-    return reversed
-  return points
-
-# Takes any movement path and adds horizontal/vertical movement to avoid diagonals
-func ensure_manhattan_movement(arr : Array) -> Array:
-  if len(arr) == 0:
-    return arr
-  var result = []
-  var last_pt = arr[0]
-  for pt in arr:
-    if pt.x != last_pt.x && pt.y != last_pt.y:
-      result.append(Vector2(pt.x, last_pt.y))
-    result.append(pt)
-    last_pt = pt
-  return result
-
-func get_grid_path_to(arr : Array):
-  var seen_nodes = {}
-  var new_arr = []
-  for pt in arr:
-    var v = Vector2(map_to_cell(pt.x), map_to_cell(pt.y))
-    var v_str = var2str(v)
-    if !(v_str in seen_nodes):
-      seen_nodes[v_str] = true
-      new_arr.append(v)
-  var interpolated = interpolate_lines(new_arr)
-  var manhattan_distance = ensure_manhattan_movement(interpolated)
-  # Remove first point, which is our start position
-  manhattan_distance.pop_front()
-  return manhattan_distance
-   
-func _on_bridge_destroyed():
+func _on_bridge_destroyed(tile_pos):
+  astar.remove_point(_get_id_for_tile(tile_pos))
   update_cart_pathfinding()
 
 func show_arrows():
@@ -210,3 +133,32 @@ func show_arrows():
 
 func on_level_win_unlock():
   show_arrows()
+  
+func cast_point_to_tile(point):
+  return Vector2(floor(point.x / 16), floor(point.y / 16))
+  
+func prepare_grid():
+  var traversable_tiles = $Navigation2D/TileMap.get_used_cells()
+  for tile in traversable_tiles:
+    var tile_id = _get_id_for_tile(tile)
+    astar.add_point(tile_id, Vector2(tile.x, tile.y))
+  for tile in traversable_tiles:
+    var tile_id = _get_id_for_tile(tile)
+    for x in range(2):
+      for y in range(2):
+        if x == y:
+          continue
+        var target = tile + Vector2(x - 1, y - 1)
+        var target_id = _get_id_for_tile(target)
+        if tile == target or not astar.has_point(target_id):
+          continue
+        astar.connect_points(tile_id, target_id, true)
+ 
+func get_grid_path(start : Vector2, finish : Vector2):
+  var start_tile = cast_point_to_tile(start)
+  var finish_tile = cast_point_to_tile(finish)
+  return astar.get_point_path(_get_id_for_tile(start_tile), _get_id_for_tile(finish_tile))
+
+func _get_id_for_tile(tile):
+  var used_rect = $Navigation2D/TileMap.get_used_rect()
+  return (tile.x - used_rect.position.x) + (tile.y - used_rect.position.y) * used_rect.size.x

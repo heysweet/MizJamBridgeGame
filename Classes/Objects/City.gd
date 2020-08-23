@@ -61,5 +61,5 @@ func destroy_city():
   $SoundDestroy.play()
 
 func _on_City2_body_entered(body):
-  if !(body is TileMap):
+  if !(body is TileMap) and !body.same_team(self):
     destroy_city()

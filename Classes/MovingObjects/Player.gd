@@ -101,7 +101,7 @@ func destroy_bridge(map_collider):
     false, # transpose
     Vector2(4, 0))# autotile_coord
   map_collider.update_dirty_quadrants()
-  emit_signal("bridge_destroy")
+  emit_signal("bridge_destroy", tile_pos)
   emit_signal("time_step")
   $SoundDestroyBridge.play()
     

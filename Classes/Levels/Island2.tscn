@@ -393,6 +393,7 @@ tile_row = 3
 tile_col = 4
 
 [node name="City3" parent="Cities" instance=ExtResource( 5 )]
+modulate = Color( 0.4, 0.8, 0.933333, 1 )
 position = Vector2( 280, 200 )
 tile_row = 12
 tile_col = 17
