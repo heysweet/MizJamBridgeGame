@@ -1,10 +1,7 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://Classes/Layout/Carts.gd" type="Script" id=1]
-[ext_resource path="res://Classes/Renderable.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Classes/UI/TextDisplay.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Classes/Levels/Control.gd" type="Script" id=4]
-[ext_resource path="res://sfx/Text.wav" type="AudioStream" id=5]
 [ext_resource path="res://Classes/Layout/Level.gd" type="Script" id=6]
 [ext_resource path="res://1bitpack_kenney_1.1/valley.png" type="Texture" id=7]
 [ext_resource path="res://1bitpack_kenney_1.1/Tilesheet/colored_transparent_packed.png" type="Texture" id=8]
@@ -367,6 +364,14 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 } ]
 8/z_index = 0
 
+[sub_resource type="DynamicFontData" id=44]
+antialiased = false
+font_path = "res://lunchds.ttf"
+
+[sub_resource type="DynamicFont" id=45]
+size = 4
+font_data = SubResource( 44 )
+
 [node name="Level1" type="Node2D"]
 script = ExtResource( 6 )
 
@@ -382,7 +387,7 @@ modulate = Color( 0.513726, 0.462745, 0.462745, 1 )
 tile_set = SubResource( 43 )
 cell_size = Vector2( 16, 16 )
 format = 1
-tile_data = PoolIntArray( -65538, 2, 131073, -65537, 2, 3, -131072, 2, 3, -131071, 2, 3, -131070, 2, 3, -131069, 2, 3, -131068, 2, 3, -131067, 2, 3, -131066, 2, 3, -131065, 2, 3, -131064, 2, 3, -131063, 2, 3, -131062, 2, 65537, -2, 2, 4, -1, 2, 5, -65536, 2, 5, -65535, 2, 5, -65534, 2, 5, -65533, 2, 65539, -65532, 2, 5, -65531, 2, 5, -65530, 2, 5, -65529, 2, 5, -65528, 2, 5, -65527, 2, 5, -65526, 2, 65540, 65534, 2, 4, 65535, 2, 5, 0, 2, 5, 1, 2, 5, 2, 2, 65540, 4, 2, 4, 5, 2, 5, 6, 2, 5, 7, 2, 5, 8, 2, 5, 9, 2, 5, 10, 2, 65540, 131070, 2, 4, 131071, 2, 5, 65536, 2, 5, 65537, 2, 5, 65538, 2, 65540, 65540, 2, 4, 65541, 2, 5, 65542, 2, 5, 65543, 2, 5, 65544, 2, 5, 65545, 2, 5, 65546, 2, 65540, 196606, 2, 4, 196607, 2, 5, 131072, 2, 5, 131073, 2, 5, 131074, 2, 65540, 131076, 2, 4, 131077, 2, 5, 131078, 2, 5, 131079, 2, 5, 131080, 2, 5, 131081, 2, 5, 131082, 2, 65540, 262142, 2, 4, 262143, 2, 5, 196608, 2, 5, 196609, 2, 5, 196610, 2, 131075, 196612, 2, 4, 196613, 2, 5, 196614, 2, 5, 196615, 2, 5, 196616, 2, 5, 196617, 2, 5, 196618, 2, 65540, 327678, 2, 4, 327679, 2, 5, 262144, 2, 5, 262145, 2, 65540, 262148, 2, 4, 262149, 2, 5, 262150, 2, 5, 262151, 2, 5, 262152, 2, 5, 262153, 2, 5, 262154, 2, 65540, 393214, 2, 4, 393215, 2, 5, 327680, 2, 5, 327681, 2, 65540, 327683, 2, 131073, 327684, 2, 5, 327685, 2, 5, 327686, 2, 5, 327687, 2, 5, 327688, 2, 5, 327689, 2, 5, 327690, 2, 65540, 458750, 2, 4, 458751, 2, 5, 393216, 2, 5, 393217, 2, 65540, 393218, 7, 0, 393219, 2, 4, 393220, 2, 5, 393221, 2, 5, 393222, 2, 5, 393223, -1610612734, 5, 393224, 2, 5, 393225, 2, 5, 393226, 2, 65540, 524286, 2, 131072, 524287, 2, 65539, 458752, 2, 5, 458753, 2, 65540, 458755, 2, 4, 458756, 2, 5, 458757, 2, 5, 458758, 2, 5, 458759, -1610612734, 5, 458760, 2, 5, 458761, 2, 5, 458762, 2, 65540, 524288, 2, 4, 524289, 2, 65540, 524291, 2, 4, 524292, 2, 5, 524293, 2, 5, 524294, 2, 5, 524295, 2, 5, 524296, 2, 5, 524297, 2, 5, 524298, 2, 65540, 589824, 2, 4, 589825, 2, 5, 589826, 2, 3, 589827, 2, 5, 589828, 2, 5, 589829, 2, 5, 589830, 2, 5, 589831, 2, 5, 589832, 2, 5, 589833, 2, 5, 589834, 2, 65540, 655360, 2, 131072, 655361, 2, 65539, 655362, 2, 65539, 655363, 2, 65539, 655364, 2, 65539, 655365, 2, 65539, 655366, 2, 65539, 655367, 2, 65539, 655368, 2, 65539, 655369, 2, 65539, 655370, 2, 131075, 720904, 8, 0, 852000, 8, 0 )
+tile_data = PoolIntArray( -65538, 2, 131073, -65537, 2, 3, -131072, 2, 3, -131071, 2, 3, -131070, 2, 3, -131069, 2, 3, -131068, 2, 3, -131067, 2, 3, -131066, 2, 3, -131065, 2, 3, -131064, 2, 3, -131063, 2, 3, -131062, 2, 65537, -2, 2, 4, -1, 2, 5, -65536, 2, 5, -65535, 2, 5, -65534, 2, 5, -65533, 2, 65539, -65532, 2, 5, -65531, 2, 5, -65530, 2, 5, -65529, 2, 5, -65528, 2, 5, -65527, 2, 5, -65526, 2, 65540, 65534, 2, 4, 65535, 2, 5, 0, 2, 5, 1, 2, 5, 2, 2, 65540, 4, 2, 4, 5, 2, 5, 6, 2, 5, 7, 2, 5, 8, 2, 5, 9, 2, 5, 10, 2, 65540, 131070, 2, 4, 131071, 2, 5, 65536, 2, 5, 65537, 2, 5, 65538, 2, 65540, 65540, 2, 4, 65541, 2, 5, 65542, 2, 5, 65543, 2, 5, 65544, 2, 5, 65545, 2, 5, 65546, 2, 65540, 196606, 2, 4, 196607, 2, 5, 131072, 2, 5, 131073, 2, 5, 131074, 2, 65540, 131076, 2, 4, 131077, 2, 5, 131078, 2, 5, 131079, 2, 5, 131080, 2, 5, 131081, 2, 5, 131082, 2, 65540, 262142, 2, 4, 262143, 2, 5, 196608, 2, 5, 196609, 2, 5, 196610, 2, 131075, 196612, 2, 4, 196613, 2, 5, 196614, 2, 5, 196615, 2, 5, 196616, 2, 5, 196617, 2, 5, 196618, 2, 65540, 327678, 2, 4, 327679, 2, 5, 262144, 2, 5, 262145, 2, 65540, 262148, 2, 4, 262149, 2, 5, 262150, 2, 5, 262151, 2, 5, 262152, 2, 5, 262153, 2, 5, 262154, 2, 65540, 393214, 2, 4, 393215, 2, 5, 327680, 2, 5, 327681, 2, 65540, 327683, 2, 131073, 327684, 2, 5, 327685, 2, 5, 327686, 2, 5, 327687, 2, 5, 327688, 2, 5, 327689, 2, 5, 327690, 2, 65540, 458750, 2, 4, 458751, 2, 5, 393216, 2, 5, 393217, 2, 65540, 393218, 7, 0, 393219, 2, 131072, 393220, 2, 65539, 393221, 2, 65539, 393222, 2, 5, 393223, -1610612734, 5, 393224, 2, 5, 393225, 2, 5, 393226, 2, 65540, 524286, 2, 131072, 524287, 2, 65539, 458752, 2, 5, 458753, 2, 65540, 458758, 2, 4, 458759, -1610612734, 5, 458760, 2, 5, 458761, 2, 5, 458762, 2, 65540, 524288, 2, 4, 524289, 2, 65540, 524291, 2, 131073, 524292, 2, 3, 524293, 2, 3, 524294, 2, 5, 524295, 2, 5, 524296, 2, 5, 524297, 2, 5, 524298, 2, 65540, 589824, 2, 4, 589825, 2, 5, 589826, 2, 3, 589827, 2, 5, 589828, 2, 5, 589829, 2, 5, 589830, 2, 5, 589831, 2, 5, 589832, 2, 5, 589833, 2, 5, 589834, 2, 65540, 655360, 2, 131072, 655361, 2, 65539, 655362, 2, 65539, 655363, 2, 65539, 655364, 2, 65539, 655365, 2, 65539, 655366, 2, 65539, 655367, 2, 65539, 655368, 2, 65539, 655369, 2, 65539, 655370, 2, 131075, 720904, 8, 0, 852000, 8, 0 )
 
 [node name="Cities" type="Node" parent="."]
 
@@ -400,130 +405,45 @@ current = true
 zoom = Vector2( 0.6, 0.6 )
 numTiles = Vector2( 8, 6 )
 
-[node name="Node2D" type="Node2D" parent="."]
-modulate = Color( 1, 0.6, 0.6, 1 )
-position = Vector2( 72.7609, 105.674 )
-scale = Vector2( 0.5, 0.5 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Up" parent="Node2D" instance=ExtResource( 2 )]
-position = Vector2( 0, -16 )
-row = 21
-col = 23
-
-[node name="Left" parent="Node2D" instance=ExtResource( 2 )]
-position = Vector2( -18, 0 )
-row = 21
-col = 26
-
-[node name="Right" parent="Node2D" instance=ExtResource( 2 )]
-position = Vector2( 18, 0 )
-row = 21
-col = 24
-
-[node name="Down" parent="Node2D" instance=ExtResource( 2 )]
-row = 21
-col = 25
-
-[node name="TextDisplay" parent="Node2D" instance=ExtResource( 3 )]
-position = Vector2( 40.3432, -15.2949 )
-display_string = "or        W A S D"
-should_type = false
-
 [node name="Subtitle" parent="." instance=ExtResource( 3 )]
 modulate = Color( 0.419608, 0.552941, 0.427451, 1 )
-position = Vector2( 73.385, 44.7405 )
+position = Vector2( 72.6484, 32.5868 )
+scale = Vector2( 0.5, 0.5 )
 display_string = "The Card Game: The Video Game"
 max_width = 100
+should_type = false
 delay_secs = 1.1
 
 [node name="Title" parent="." instance=ExtResource( 3 )]
 modulate = Color( 0.580392, 0.45098, 0.388235, 1 )
-position = Vector2( 72.969, 19.3189 )
-scale = Vector2( 2, 2 )
+position = Vector2( 72.969, 20.2397 )
 display_string = "Bridge:"
+should_type = false
 delay_secs = 0.2
 
-[node name="Control" type="Control" parent="."]
-margin_left = 18.0
-margin_top = 18.0
-margin_right = 108.0
-margin_bottom = 164.0
-rect_scale = Vector2( 0.3, 0.3 )
-script = ExtResource( 4 )
+[node name="Label" type="Label" parent="."]
+margin_left = 73.9555
+margin_top = 54.6261
+margin_right = 177.956
+margin_bottom = 93.6259
+size_flags_stretch_ratio = 0.11
+custom_fonts/font = SubResource( 45 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Reusenoise  (DNB Mix) by spinningmerkaba (c) copyright 2017 Licensed under a Creative Commons Attribution (3.0) license. http://dig.ccmixter.org/files/jlbrock44/56531 "
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MasterSlider" type="HSlider" parent="Control"]
-margin_left = 9.73374
-margin_top = 23.3373
-margin_right = 70.7337
-margin_bottom = 39.3373
-min_value = 1.0
-max_value = 1000.0
-step = 1.0
-value = 700.0
-scrollable = false
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="TextDisplay" parent="Control/MasterSlider" instance=ExtResource( 3 )]
-position = Vector2( -4.92609, -58.0183 )
-display_string = "Volume"
-start_pos = Vector2( 4.45905, 48.5485 )
+[node name="Restart" parent="." instance=ExtResource( 3 )]
+position = Vector2( 52.4104, 67.1481 )
+display_string = "Restart"
+start_pos = Vector2( -17.0752, 49.8577 )
 should_type = false
 
-[node name="MusicSlider" type="HSlider" parent="Control"]
-margin_left = 9.73374
-margin_top = 69.3141
-margin_right = 70.7337
-margin_bottom = 85.3141
-min_value = 1.0
-max_value = 1000.0
-step = 1.0
-value = 700.0
-scrollable = false
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="TextDisplay" parent="Control/MusicSlider" instance=ExtResource( 3 )]
-position = Vector2( -4.92609, -58.0183 )
-display_string = "Music"
-start_pos = Vector2( 4.45905, 48.5485 )
-should_type = false
-
-[node name="SoundFXSlider" type="HSlider" parent="Control"]
-margin_left = 9.73374
-margin_top = 110.912
-margin_right = 70.7337
-margin_bottom = 126.912
-min_value = 1.0
-max_value = 1000.0
-step = 1.0
-value = 540.0
-scrollable = false
-__meta__ = {
-"_edit_group_": true,
-"_edit_use_anchors_": false
-}
-
-[node name="TextDisplay" parent="Control/SoundFXSlider" instance=ExtResource( 3 )]
-position = Vector2( -4.92609, -58.0183 )
-display_string = "Sound FX"
-start_pos = Vector2( 4.45905, 48.5485 )
-should_type = false
-
-[node name="SoundTest" type="AudioStreamPlayer" parent="Control"]
-stream = ExtResource( 5 )
-bus = "SFX"
+[node name="MizJam" parent="." instance=ExtResource( 3 )]
+position = Vector2( 45.597, 60.8871 )
+scale = Vector2( 0.75, 0.75 )
+display_string = "Made for MizJam One  Twenty Twenty  -"
+start_pos = Vector2( 17.9126, 42.1235 )
 [connection signal="time_step" from="Player" to="Carts" method="_on_Player_time_step"]
-[connection signal="value_changed" from="Control/MasterSlider" to="Control" method="_on_MasterSlider_value_changed"]
-[connection signal="value_changed" from="Control/MusicSlider" to="Control" method="_on_MusicSlider_value_changed"]
-[connection signal="value_changed" from="Control/SoundFXSlider" to="Control" method="_on_SoundFXSlider_value_changed"]
