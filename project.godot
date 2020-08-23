@@ -22,6 +22,7 @@ _global_script_class_icons={
 
 config/name="MizJamBridgeGame"
 run/main_scene="res://Classes/Levels/Main.tscn"
+config/icon="res://icon.png"
 
 [display]
 

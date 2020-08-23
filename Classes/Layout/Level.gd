@@ -12,6 +12,8 @@ var debug_lines = []
 var rand = RandomNumberGenerator.new()
 var astar = AStar2D.new()
 
+tool
+
 signal restart_level
 signal complete_level
 
@@ -117,7 +119,7 @@ func set_closest_target(targets : Array, aggressor):
       path_arr.append(min_path[i])
     aggressor.path_to_target = path_arr
     # Uncomment to show debug path
-    # add_debug_line_tiles(path_arr)
+    add_debug_line_tiles(path_arr)
   else:
     aggressor.path_to_target = []
 
@@ -158,9 +160,13 @@ func prepare_grid():
         if x == y:
           continue
         var target = tile + Vector2(x - 1, y - 1)
+        if target.x < 0 || target.y < 0:
+          continue
         var target_id = _get_id_for_tile(target)
         if tile == target or not astar.has_point(target_id):
           continue
+        if tile.x == 0:
+          print("Connecting " + str(tile) + "," + str(target))
         astar.connect_points(tile_id, target_id, true)
  
 func get_grid_path(start : Vector2, finish : Vector2):
