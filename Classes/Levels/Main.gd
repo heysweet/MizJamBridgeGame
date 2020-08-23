@@ -6,7 +6,6 @@ var levels = [
   "WarCutscene1",
   "WarCutscene2",
   "FirstBridge",
-  "FirstWar",
   "IslandWar"
 ]
 

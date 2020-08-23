@@ -56,6 +56,7 @@ func get_tile_id(collider, direction):
   var hit_pos = $RayCast2D.get_collision_point()
   var tile_pos = tilemap.world_to_map(hit_pos + direction)
   var tile = tilemap.get_cellv(tile_pos)
+  print("TileId: ", tile)
   return tile
 
 func is_movement_on_tile_allowed(collision, direction):
