@@ -440,20 +440,20 @@ display_string = "or        W A S D"
 should_type = false
 
 [node name="TextDisplay" parent="." instance=ExtResource( 3 )]
-position = Vector2( 56.996, 92.6185 )
+position = Vector2( 70.0704, 62.4185 )
 display_string = "The Card Game: The Video Game"
 max_width = 100
 
 [node name="TextDisplay2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 70.7593, 67.197 )
+position = Vector2( 69.6544, 36.997 )
 scale = Vector2( 2, 2 )
 display_string = "Bridge:"
 
 [node name="Label" type="Label" parent="."]
-margin_left = 69.9043
-margin_top = 39.1578
-margin_right = 173.904
-margin_bottom = 78.1578
+margin_left = 57.9348
+margin_top = 91.2712
+margin_right = 161.935
+margin_bottom = 130.271
 size_flags_stretch_ratio = 0.11
 custom_fonts/font = SubResource( 45 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
