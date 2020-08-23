@@ -409,6 +409,7 @@ zoom = Vector2( 0.6, 0.6 )
 numTiles = Vector2( 8, 6 )
 
 [node name="Node2D" type="Node2D" parent="."]
+modulate = Color( 1, 0.6, 0.6, 1 )
 position = Vector2( 93.9378, 32.7518 )
 scale = Vector2( 0.5, 0.5 )
 __meta__ = {
@@ -440,12 +441,14 @@ display_string = "or        W A S D"
 should_type = false
 
 [node name="Subtitle" parent="." instance=ExtResource( 3 )]
+modulate = Color( 0.419608, 0.552941, 0.427451, 1 )
 position = Vector2( 70.0704, 62.4185 )
 display_string = "The Card Game: The Video Game"
 max_width = 100
 delay_secs = 1.1
 
 [node name="Title" parent="." instance=ExtResource( 3 )]
+modulate = Color( 0.580392, 0.45098, 0.388235, 1 )
 position = Vector2( 69.6544, 36.997 )
 scale = Vector2( 2, 2 )
 display_string = "Bridge:"
