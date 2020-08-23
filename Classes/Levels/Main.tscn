@@ -11,6 +11,6 @@ script = ExtResource( 1 )
 
 [node name="TextDisplay" parent="Level1" instance=ExtResource( 3 )]
 scale = Vector2( 0.75, 0.75 )
-display_string = "Troll! You must keeping moving to the south!"
+display_string = "Troll! You must keep moving to the south!"
 start_pos = Vector2( 8, 82 )
 max_width = 120
