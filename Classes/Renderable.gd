@@ -2,6 +2,8 @@ extends Node2D
 
 tool
 
+class_name Renderable
+
 const width = 16
 const height = 16
 const resource_pack = preload("res://1bitpack_kenney_1.1/Tilesheet/monochrome_transparent_packed.png")
