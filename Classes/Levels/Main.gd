@@ -6,7 +6,8 @@ var levels = [
   "WarCutscene1",
   "WarCutscene2",
   "FirstBridge",
-  "IslandWar"
+  "IslandWar",
+  "Island2"
 ]
 
 # Called when the node enters the scene tree for the first time.
