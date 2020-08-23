@@ -73,6 +73,8 @@ func set_closest_target(targets : Array, aggressor):
       min_path = path
   if min_path:
     aggressor.path_to_target = get_grid_path_to(min_path)
+  else:
+    aggressor.path_to_target = []
 
 #  Uncomment the below with ctrl+K to show lines for debugging
 #  if min_path:
