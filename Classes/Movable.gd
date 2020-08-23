@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Node2D
 
 export var tile_row : int = 0 setget set_tile_row
 export var tile_col : int = 0 setget set_tile_col
