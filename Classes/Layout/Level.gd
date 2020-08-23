@@ -165,8 +165,6 @@ func prepare_grid():
         var target_id = _get_id_for_tile(target)
         if tile == target or not astar.has_point(target_id):
           continue
-        if tile.x == 0:
-          print("Connecting " + str(tile) + "," + str(target))
         astar.connect_points(tile_id, target_id, true)
  
 func get_grid_path(start : Vector2, finish : Vector2):
