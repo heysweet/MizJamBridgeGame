@@ -422,9 +422,9 @@ should_type = false
 delay_secs = 0.2
 
 [node name="Label" type="Label" parent="."]
-margin_left = 73.9555
+margin_left = 70.2726
 margin_top = 54.6261
-margin_right = 177.956
+margin_right = 174.273
 margin_bottom = 93.6259
 size_flags_stretch_ratio = 0.11
 custom_fonts/font = SubResource( 45 )

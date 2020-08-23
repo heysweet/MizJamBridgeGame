@@ -8,7 +8,8 @@ var levels = [
   "WarCutscene2",
   "FirstBridge",
   "IslandWar",
-  "Island2"
+  "Island2",
+  "YouWon"
 ]
 
 # Called when the node enters the scene tree for the first time.
@@ -36,6 +37,7 @@ func _next_level():
   $Level.remove_child(level)
   level.queue_free()
   level_num += 1
+  level_num %= len(levels)
   start_level()
 
 func _on_MusicIntro_finished():
