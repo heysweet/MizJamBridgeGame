@@ -8,8 +8,8 @@ var levels = [
   "WarCutscene2",
   "FirstBridge",
   "IslandWar",
-  "Island2",
   "MultipleCities",
+  "Island2",
   "YouWon"
 ]
 
