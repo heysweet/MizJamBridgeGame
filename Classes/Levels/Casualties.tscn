@@ -407,16 +407,16 @@ tile_col = 16
 rank = 2
 
 [node name="Cart2" parent="Carts" instance=ExtResource( 4 )]
-position = Vector2( 40, 120 )
+position = Vector2( 104, 120 )
 tile_row = 7
-tile_col = 2
+tile_col = 6
 suit = 2
 rank = 3
 
 [node name="Cart4" parent="Carts" instance=ExtResource( 4 )]
-position = Vector2( 24, 232 )
-tile_row = 14
-tile_col = 1
+position = Vector2( 104, 152 )
+tile_row = 9
+tile_col = 6
 suit = 2
 rank = 4
 

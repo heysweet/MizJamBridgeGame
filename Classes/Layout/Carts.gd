@@ -26,9 +26,11 @@ func _on_Player_time_step():
           child.take_damage(initial_str[new_resident])
         else:
           if child.rank < new_resident.rank:
+            # Destroy the weaker spawn
             child.take_damage(child.rank)
           else:
-            child.rank += new_resident.rank
+            # By our powers combined
+            child.set_rank(initial_str[child] + new_resident.rank)
     # Two ships passed in the night, but it ended badly
     if after_pos.has(prev_loc) && len(after_pos[prev_loc]) > 0:
       for new_resident in after_pos[prev_loc]:
