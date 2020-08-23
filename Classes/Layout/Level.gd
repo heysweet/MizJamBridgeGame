@@ -10,7 +10,8 @@ tool
 signal restart_level
 signal complete_level
 
-var colors = [Color(0,255,255), Color(255,0,0),Color(0,255,255), Color(255,0,0),Color(0,255,255), Color(255,0,0)]
+var colors = [Color(0,255,255), Color(255,0,0),Color(0,0,255), 
+Color(255,0,0),Color(21,255,255), Color(255,0,0)]
 
 func hide_exit():
   var tile_map = $Navigation2D/TileMap
@@ -56,24 +57,128 @@ func update_cart_pathfinding():
 
 func set_closest_city(cities, cart):
   var min_path
+  var offset = Vector2(8, 8) 
   for city in cities:
     if cart.same_team(city):
       continue
-    var path = $Navigation2D.get_simple_path(cart.position, city.position, true)
+    var path = $Navigation2D.get_simple_path(cart.position - offset, 
+      city.position - offset, true)
     if (!min_path || path.size() < min_path.size()):
       min_path = path
-  cart.set_path_to(min_path) 
+  cart.path_to_city = get_grid_path_to(min_path)
+#  Uncomment the below with ctrl+K to show lines for debugging
+#  var points = []
+#
+#  points.append(cart.position)
+#  for point in cart.path_to_city:
+#    points.append(point * 16 + offset)
+#  var line2d = Line2D.new()
+#  line2d.points = points
+#  line2d.width = 1
+#  line2d.show()
+#  line2d.default_color = colors.pop_front()
+#  .add_child(line2d)
+#  var line2d2 = Line2D.new()
+#  line2d2.points = min_path
+#  line2d2.width = 1
+#  line2d2.show()
+#  line2d2.default_color = colors.pop_front()
+#  .add_child(line2d2)
+
+func map_to_cell(value : int):
+  return int(floor(value / 16))
+  
+func interpolate_lines(arr: Array) -> Array:
   var points = []
-  points.append(cart.position)
-  for point in cart.path_to_city:
-    points.append(point * 16)
-  var line2d = Line2D.new()
-  line2d.points = min_path
-  line2d.width = 1
-  line2d.show()
-  line2d.default_color = colors.pop_front()
-  .add_child(line2d)
-    
+  var last_pt = null
+  for i in range(arr.size()):
+    var point = arr[i]
+    ## Skip our first_entry, as we won't have a last_pt yet
+    if i == 0:
+      last_pt = point
+      points.append(last_pt)
+      continue
+    var interpolated_points = interpolate_points(last_pt, point)
+    # Remove the last point, as it will equal the first in the next line
+    points.pop_back()
+    points += interpolate_points(last_pt, point)
+    last_pt = point
+    i += 1
+  return points
+
+# Bressenham's Line Drawing Algorithm
+func interpolate_points(a: Vector2, b: Vector2) -> Array:
+  var steep = false
+  var swapped = false
+  var points = [] 
+  # If we're traveling further on y then x, temporarily swap axes rather than
+  # duplicating the code modulo using y instead of x
+  if abs(a.x - b.x) < abs(a.y - b.y):
+    a = Vector2(a.y, a.x)
+    b = Vector2(b.y, b.x)
+    steep = true
+  # Ensure we're drawing left-to-right
+  if a.x > b.x:
+    var temp = a
+    a = b
+    b = temp
+    swapped = true
+  var x = a.x
+  var slope = abs(float((b.y - a.y) / (b.x - a.x))) # Slope
+  var accum_error = float(0.0)
+  var y = a.y
+  var y_inc = -1
+  if b.y > a.y:
+    y_inc = 1
+  # Walk along our x-axis
+  while x <= b.x:
+    if steep:
+      points.append(Vector2(y, x))
+    else:
+      points.append(Vector2(x, y))
+    # Every step we check if enough "x" has passed that we should increment our
+    # "y" value.
+    accum_error += slope
+    if (accum_error > 0.5):
+      y += y_inc
+      accum_error -= 1.0
+    x += 1
+  # If we swapped, we'll need to reverse the ordering
+  if swapped:
+    var reversed = []
+    for pt in points:
+      reversed.push_front(pt)
+    return reversed
+  return points
+
+# Takes any movement path and adds horizontal/vertical movement to avoid diagonals
+func ensure_manhattan_movement(arr : Array) -> Array:
+  if len(arr) == 0:
+    return arr
+  var result = []
+  var last_pt = arr[0]
+  for pt in arr:
+    if pt.x != last_pt.x && pt.y != last_pt.y:
+      result.append(Vector2(pt.x, last_pt.y))
+    result.append(pt)
+    last_pt = pt
+  return result
+
+func get_grid_path_to(arr : Array):
+  var seen_nodes = {}
+  var new_arr = []
+  for pt in arr:
+    var v = Vector2(map_to_cell(pt.x), map_to_cell(pt.y))
+    var v_str = var2str(v)
+    if !(v_str in seen_nodes):
+      seen_nodes[v_str] = true
+      new_arr.append(v)
+  var interpolated = interpolate_lines(new_arr)
+  var manhattan_distance = ensure_manhattan_movement(interpolated)
+  # Remove first point, which is our start position
+  manhattan_distance.pop_front()
+  return manhattan_distance
+   
 func _on_bridge_destroyed():
   update_cart_pathfinding()
 
