@@ -6,8 +6,6 @@ const INVISIBLE_LEVEL_ARROW_ID = 8
 export var is_level_complete_on_start = false
 var arrow_cells = []
 
-tool
-
 signal restart_level
 signal complete_level
 
@@ -192,7 +190,10 @@ func get_grid_path_to(arr : Array):
 func _on_bridge_destroyed():
   update_cart_pathfinding()
 
-func on_level_win_unlock():
+func show_arrows():
   var tile_map = $Navigation2D/TileMap
   for cell in arrow_cells:
     tile_map.set_cellv(cell, EXIT_LEVEL_ARROW_ID)
+
+func on_level_win_unlock():
+  show_arrows()
