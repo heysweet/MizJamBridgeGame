@@ -38,7 +38,7 @@ var char_map = {
   },
   'l' : {
     'rowCol' : get_letter_row_col('l'),
-    'width' : 10
+    'width' : 9
   },
   'm' : {
     'rowCol' : get_letter_row_col('m'),
