@@ -56,19 +56,10 @@ func get_tile_id(collider, direction):
   var hit_pos = $RayCast2D.get_collision_point()
   var tile_pos = tilemap.world_to_map(hit_pos + direction)
   var tile = tilemap.get_cellv(tile_pos)
-  print (tile)
   return tile
-  
-  #var cell_position = target_position + offset
-  #print("target: ", target_position)
-  #print("position: ", position)
-  #var tile_id = collision.get_cell(cell_position.x, cell_position.y)
-  #print(tile_id)
-  #return tile_id
 
 func is_movement_on_tile_allowed(collision, direction):
   var tile_id = get_tile_id(collision, direction)
-  print(tile_id)
   match (tile_id):
     -1: # No tile detected
       true
@@ -87,11 +78,8 @@ func can_move(move_vector):
   var collision = get_collision(offset)
   if collision != null and collision is TileMap:
     if is_movement_on_tile_allowed(collision, move_vector):
-      print("ALLOWED")
       return true
-    print("DISALLOWED")
     return false
-  print("N/A")
   return true
 
 func try_move(move_vector):
