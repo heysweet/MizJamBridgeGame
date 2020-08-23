@@ -9,6 +9,7 @@ var levels = [
   "FirstBridge",
   "IslandWar",
   "Island2",
+  "MultipleCities",
   "YouWon"
 ]
 
