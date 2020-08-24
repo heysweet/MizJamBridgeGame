@@ -379,7 +379,6 @@ tile_col = 8
 [node name="Navigation2D" type="Navigation2D" parent="."]
 
 [node name="TileMap" type="TileMap" parent="Navigation2D"]
-modulate = Color( 0.513726, 0.462745, 0.462745, 1 )
 tile_set = SubResource( 43 )
 cell_size = Vector2( 16, 16 )
 format = 1
