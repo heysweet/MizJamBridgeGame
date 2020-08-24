@@ -464,7 +464,7 @@ col = 27
 [node name="TextDisplay" parent="ManFace" instance=ExtResource( 3 )]
 position = Vector2( 2.59613, -11.4229 )
 scale = Vector2( 0.7, 0.7 )
-display_string = "If a single city is lost I will consider you a failure!"
+display_string = "After all you are a bridge troll.              You keep people from crossing bridges."
 start_pos = Vector2( -91, -39 )
 max_width = 35
 
