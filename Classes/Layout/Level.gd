@@ -72,7 +72,7 @@ func _ready():
   $Carts.connect("card_kill", self, "_card_kill")
   $Player.connect("bridge_destroy", self, "_on_bridge_destroyed")
   $Player.connect("level_exit", self, "_fire_level_complete")
-  update_cart_pathfinding()
+  update_cart_pathfinding(Vector2(-10, -10))
 
 func _card_kill():
   if .has_node("SoundCardKill"):
@@ -89,43 +89,48 @@ func _check_level_win():
   if is_level_won:
     on_level_win_unlock()
 
-func update_cart_pathfinding():
+func update_cart_pathfinding(bridge_exploded_location):
+  # Clear debug lines
   for debug_line in debug_lines:
     debug_lines.pop_back().queue_free()
   for cart in $Carts.get_children():
-    set_closest_target($Cities.get_children(), cart)
+    var curr_tile = cast_point_to_tile(cart.target_position)
+    var targets = []
+    for city in $Cities.get_children():
+      if !cart.same_team(city):
+        targets.append(city)
+    # If our current cart location is where a bridge just exploded,
+    # then create a path from its previous location and prepend that spot
+    # to ensure it moves back there on the next step
+    if curr_tile == bridge_exploded_location:
+      var prev_tile = cast_point_to_tile(cart.previous_location)
+      cart.path_to_target = [prev_tile] + get_closest_target(targets, cart.previous_location)
+    # Otherwise, we create a new path from the current location
+    else:
+      cart.path_to_target = get_closest_target(targets, cart.target_position)
   _check_level_win()
   
-func set_closest_target(targets : Array, aggressor):
+func get_closest_target(targets : Array, start_position: Vector2):
   var min_path
+  var path_arr = []
   for target in targets:
-    if aggressor.same_team(target):
-      continue
-    var path = get_grid_path(aggressor.position, target.position)
+    var path = get_grid_path(start_position, target.position)
     if (!min_path || path.size() < min_path.size()):
       min_path = path
   if min_path:
-    var path_arr = []
     for i in range(min_path.size()):
       if i == 0:
         continue
       path_arr.append(min_path[i])
-    aggressor.path_to_target = path_arr
-    # Uncomment to show debug path
     if Engine.editor_hint:
       add_debug_line_tiles(path_arr)
+    return path_arr
   else:
-    aggressor.path_to_target = []
+    return []
 
 func _on_bridge_destroyed(tile_pos):
   astar.remove_point(_get_id_for_tile(tile_pos))
-  for cart in $Carts.get_children():
-    if cart.previous_location:
-      var curr_tile = cast_point_to_tile(cart.target_position)
-      var prev_tile = cast_point_to_tile(cart.previous_location)
-      if cast_point_to_tile(cart.target_position) == tile_pos:
-        cart.do_move_to(prev_tile, curr_tile - prev_tile)
-  update_cart_pathfinding()
+  update_cart_pathfinding(tile_pos)
 
 func show_arrows():
   var tile_map = $Navigation2D/TileMap
