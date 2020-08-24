@@ -406,6 +406,18 @@ tile_row = -1
 tile_col = 4
 rank = 2
 
+[node name="Cart2" parent="Carts" instance=ExtResource( 4 )]
+position = Vector2( 40, 72 )
+tile_row = 4
+tile_col = 2
+rank = 4
+
+[node name="Cart4" parent="Carts" instance=ExtResource( 4 )]
+position = Vector2( 8, 72 )
+tile_row = 4
+suit = 2
+rank = 4
+
 [node name="Cart3" parent="Carts" instance=ExtResource( 4 )]
 position = Vector2( 24, 200 )
 tile_row = 12
