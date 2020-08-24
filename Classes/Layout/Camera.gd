@@ -19,9 +19,9 @@ func _ready():
   update_camera(numTiles)
  
 func get_best_camera_size(screenSize):
-    var bestResizeX = floor(screenSize.x/baseSize.x)
-    var bestResizeY = floor(screenSize.y/baseSize.y)
-    
-    if (bestResizeX <= bestResizeY):
-        return screenSize / bestResizeX
-    return screenSize / bestResizeY
+  var bestResizeX = floor(screenSize.x/baseSize.x)
+  var bestResizeY = floor(screenSize.y/baseSize.y)
+  
+  if (bestResizeX <= bestResizeY):
+      return screenSize / bestResizeX
+  return screenSize / bestResizeY
