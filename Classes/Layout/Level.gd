@@ -120,9 +120,9 @@ func set_closest_target(targets : Array, aggressor):
 func _on_bridge_destroyed(tile_pos):
   astar.remove_point(_get_id_for_tile(tile_pos))
   for cart in $Carts.get_children():
-    if cart.last_position:
+    if cart.previous_location:
       var curr_tile = cast_point_to_tile(cart.target_position)
-      var prev_tile = cast_point_to_tile(cart.last_position)
+      var prev_tile = cast_point_to_tile(cart.previous_location)
       if cast_point_to_tile(cart.target_position) == tile_pos:
         cart.do_move_to(prev_tile, curr_tile - prev_tile)
   update_cart_pathfinding()
