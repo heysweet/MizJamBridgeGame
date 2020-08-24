@@ -31,7 +31,8 @@ func set_tile_row(row):
 
 func set_suit(new_suit):
   suit = new_suit
-  modulate = suit_colors[suit]
+  modulate = Color("#FFFFFF")
+  $CityRenderable.modulate = suit_colors[suit]
   
 func is_type(type):
   return type == "Card" or .is_type(type)
@@ -45,8 +46,10 @@ func _process(delta):
     destroy_time += delta
     shake_amount += 0.001
     shake_frequency -= 0.003
-    position.x = base_position.x + (sin(destroy_time * shake_frequency) * shake_amount)
+    var xOffset = sin(destroy_time * shake_frequency) * shake_amount
+    position.x = base_position.x + xOffset
     position.y += delta * fall_speed
+    $Smoke.position.x = -xOffset
     $CityRenderable.bottom_clip(destroy_time / disappear_time)
     if destroy_time > disappear_time:
       position = base_position
@@ -57,6 +60,7 @@ func destroy_city():
   state = State.DESTROYING
   base_position = position
   destroy_time = 0
+  $Smoke.emitting = true
   emit_signal("start_city_destroy")
   $SoundDestroy.play()
 

@@ -377,19 +377,20 @@ tile_col = 10
 [node name="Cities" type="Node" parent="."]
 
 [node name="City3" parent="Cities" instance=ExtResource( 8 )]
+modulate = Color( 1, 1, 1, 1 )
 position = Vector2( 136, 56 )
 tile_row = 3
 tile_col = 8
 
 [node name="City4" parent="Cities" instance=ExtResource( 8 )]
-modulate = Color( 0.8, 0.733333, 0.266667, 1 )
+modulate = Color( 1, 1, 1, 1 )
 position = Vector2( 232, 168 )
 suit = 2
 tile_row = 10
 tile_col = 14
 
 [node name="City5" parent="Cities" instance=ExtResource( 8 )]
-modulate = Color( 0.8, 0.733333, 0.266667, 1 )
+modulate = Color( 1, 1, 1, 1 )
 position = Vector2( 136, 8 )
 suit = 2
 tile_col = 8
