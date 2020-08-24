@@ -12,6 +12,7 @@ var time_passed = 0
 var path_to_target = []
 var just_moved = true
 var previous_location
+var lame_duck = false
 
 func _ready():
   self.connect("complete_level", self, "_next_level")

@@ -85,11 +85,11 @@ func _fire_level_complete():
 func _check_level_win():
   var is_level_won = true
   for cart in $Carts.get_children():
-    is_level_won = is_level_won and !cart.has_path()
+    is_level_won = is_level_won and (!cart.has_path() || cart.lame_duck)
   if is_level_won:
     on_level_win_unlock()
 
-func update_cart_pathfinding(bridge_exploded_location):
+func update_cart_pathfinding(bridge_exploded_location: Vector2):
   # Clear debug lines
   for debug_line in debug_lines:
     debug_lines.pop_back().queue_free()
@@ -105,6 +105,10 @@ func update_cart_pathfinding(bridge_exploded_location):
     if curr_tile == bridge_exploded_location:
       var prev_tile = cast_point_to_tile(cart.previous_location)
       cart.path_to_target = [prev_tile] + get_closest_target(targets, cart.previous_location)
+      # If the only point is our movement back, this is for aesthetic reasons
+      # and the cart is functionally dead
+      if cart.path_to_target.size() == 1:
+        cart.lame_duck = true
     # Otherwise, we create a new path from the current location
     else:
       cart.path_to_target = get_closest_target(targets, cart.target_position)
