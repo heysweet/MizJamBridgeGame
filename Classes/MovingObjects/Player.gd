@@ -103,6 +103,7 @@ func destroy_bridge(map_collider):
   map_collider.update_dirty_quadrants()
   emit_signal("bridge_destroy", tile_pos)
   emit_signal("time_step")
+  $CPUParticles2D.restart()
   $SoundDestroyBridge.play()
     
 func get_collision(delta : Vector2):

@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Classes/MovingObjects/Player.gd" type="Script" id=1]
 [ext_resource path="res://Classes/Renderable.gd" type="Script" id=2]
 [ext_resource path="res://sfx/Walk.wav" type="AudioStream" id=3]
 [ext_resource path="res://sfx/FailMove.wav" type="AudioStream" id=4]
 [ext_resource path="res://sfx/BridgeDestroy.wav" type="AudioStream" id=5]
+[ext_resource path="res://Classes/Objects/BridgeDestroy.tscn" type="PackedScene" id=6]
 
 [node name="Player" type="Node2D"]
 position = Vector2( 8, 8 )
@@ -30,3 +31,10 @@ bus = "SFX"
 [node name="SoundDestroyBridge" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
 bus = "SFX"
+
+[node name="CPUParticles2D" parent="." instance=ExtResource( 6 )]
+z_index = 20
+z_as_relative = false
+spread = 150.19
+hue_variation = 0.09
+hue_variation_random = 0.13
