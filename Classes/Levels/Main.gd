@@ -8,6 +8,7 @@ var levels = [
   "WarCutscene2",
   "FirstBridge",
   "IslandWar",
+  "PreventOne",
   "Casualties",
   "MultipleCities",
   "Island2",
