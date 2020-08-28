@@ -486,6 +486,7 @@ script = ExtResource( 1 )
 position = Vector2( 184, 24 )
 tile_row = 1
 tile_col = 11
+suit = 0
 rank = 5
 
 [node name="Line2D" type="Line2D" parent="."]
@@ -510,6 +511,7 @@ scale = Vector2( 0.7, 0.7 )
 display_string = "Quickly! Destroy the bridges to prevent any further casualties."
 start_pos = Vector2( -91, -39 )
 max_width = 35
+delay_secs = 1.0
 
 [node name="SoundCardKill" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 11 )
@@ -530,18 +532,22 @@ modulate = Color( 0.870588, 0.341176, 0.341176, 1 )
 display_string = "TAP  and  HOLD under a bridge to"
 start_pos = Vector2( -3, 6 )
 should_type = false
+delay_secs = 1.0
 
 [node name="Line2" parent="ControlHint/Mobile" instance=ExtResource( 3 )]
 modulate = Color( 0.870588, 0.341176, 0.341176, 1 )
 display_string = "destroy"
 start_pos = Vector2( -3, 30 )
 should_type = false
+delay_secs = 1.0
 
 [node name="Desktop" type="Node2D" parent="ControlHint"]
 script = ExtResource( 14 )
 
 [node name="Line1" parent="ControlHint/Desktop" instance=ExtResource( 3 )]
 modulate = Color( 0.870588, 0.341176, 0.341176, 1 )
-display_string = "SPACE under a bridge                                                      to destroy"
+display_string = "SPACE under a bridge  to destroy"
+max_width = 152
 should_type = false
+delay_secs = 1.0
 [connection signal="time_step" from="Player" to="Carts" method="_on_Player_time_step"]
