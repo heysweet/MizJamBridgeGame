@@ -72,6 +72,7 @@ func _ready():
   $Carts.connect("card_kill", self, "_card_kill")
   $Player.connect("bridge_destroy", self, "_on_bridge_destroyed")
   $Player.connect("level_exit", self, "_fire_level_complete")
+  $Player.connect("double_tap", self, "_on_city_destroyed")
   update_cart_pathfinding(Vector2(-10, -10))
 
 func _card_kill():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://Classes/Layout/Carts.gd" type="Script" id=1]
 [ext_resource path="res://Classes/Layout/Camera.tscn" type="PackedScene" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://sfx/CardKill.wav" type="AudioStream" id=9]
 [ext_resource path="res://Classes/UI/TextDisplay.tscn" type="PackedScene" id=10]
 [ext_resource path="res://1bitpack_kenney_1.1/Tilesheet/monochrome_transparent_packed.png" type="Texture" id=11]
+[ext_resource path="res://Classes/Levels/Mobile.gd" type="Script" id=12]
+[ext_resource path="res://Classes/Levels/Desktop.gd" type="Script" id=13]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -464,6 +466,7 @@ tile_col = 10
 
 [node name="City3" parent="Cities" instance=ExtResource( 8 )]
 position = Vector2( 136, 120 )
+suit = 0
 tile_row = 7
 tile_col = 8
 
@@ -474,6 +477,7 @@ script = ExtResource( 1 )
 position = Vector2( 216, 120 )
 tile_row = 7
 tile_col = 13
+suit = 0
 rank = 4
 
 [node name="Cart2" parent="Carts" instance=ExtResource( 7 )]
@@ -505,11 +509,27 @@ __meta__ = {
 
 [node name="Node" type="Node2D" parent="."]
 
-[node name="TextDisplay" parent="." instance=ExtResource( 10 )]
+[node name="Text" type="Node2D" parent="."]
+
+[node name="Desktop" type="Node2D" parent="Text"]
+script = ExtResource( 13 )
+
+[node name="Desktop" parent="Text/Desktop" instance=ExtResource( 10 )]
 modulate = Color( 0.831373, 0.415686, 0.415686, 1 )
 position = Vector2( 1.13351, 1.98364 )
 display_string = "hit R to restart the level"
 start_pos = Vector2( 204.386, 139.685 )
 max_width = 270
+should_type = false
+
+[node name="Mobile" type="Node2D" parent="Text"]
+script = ExtResource( 12 )
+
+[node name="Mobile2" parent="Text/Mobile" instance=ExtResource( 10 )]
+modulate = Color( 0.831373, 0.415686, 0.415686, 1 )
+position = Vector2( -3.77552, 1.98364 )
+display_string = "Double tap to restart the level"
+start_pos = Vector2( 204.386, 139.685 )
+max_width = 273
 should_type = false
 [connection signal="time_step" from="Player" to="Carts" method="_on_Player_time_step"]

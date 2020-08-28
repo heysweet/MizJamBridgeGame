@@ -5,7 +5,10 @@ var debounce_millis = 120
 var is_controllable = true
 var swipe_start
 var long_press_timer
+var first_tap_time = 0
+var num_presses = 0
 
+const double_tap_duration = 240
 const TYPE_BRIDGE = 6
 const TYPE_EXIT_ARROW = 7
 const ENABLE_DEBUG_POSITION = true
@@ -15,6 +18,7 @@ const LONG_PRESS = 0.5
 signal time_step
 signal bridge_destroy
 signal level_exit
+signal double_tap
 
 tool
 
@@ -54,6 +58,15 @@ func _input(ev):
           return
     elif ev is InputEventScreenTouch:
       if ev.is_pressed():
+        if (OS.get_ticks_msec() - first_tap_time) > (2*double_tap_duration) or (num_presses > 2):
+          num_presses = 0
+          first_tap_time = 0
+        if first_tap_time == 0 and num_presses < 1:
+          num_presses = 1
+          first_tap_time = OS.get_ticks_msec()
+        elif num_presses == 2 and (double_tap_duration + first_tap_time > OS.get_ticks_msec()):
+          num_presses = 0
+          emit_signal("double_tap")
         swipe_start = ev.position
         long_press_timer = Timer.new()
         long_press_timer.set_wait_time(LONG_PRESS)
@@ -62,20 +75,25 @@ func _input(ev):
         add_child(long_press_timer)
         long_press_timer.start()
       else:
+        num_presses = 2
         long_press_timer.stop()
         long_press_timer.queue_free()
         var dir = calc_swipe(ev.position)
         match dir:
           Direction.DOWN:
+            num_presses = 0
             queue_move(Vector2(0, -1))
             return
           Direction.RIGHT:
+            num_presses = 0
             queue_move(Vector2(-1, 0))
             return
           Direction.UP:
+            num_presses = 0
             queue_move(Vector2(0, 1))
             return
           Direction.LEFT:
+            num_presses = 0
             queue_move(Vector2(1, 0))
             return
     elif ENABLE_DEBUG_POSITION and ev is InputEventMouseButton:
