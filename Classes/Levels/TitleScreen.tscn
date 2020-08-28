@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=57 format=2]
 
 [ext_resource path="res://Classes/Layout/Carts.gd" type="Script" id=1]
 [ext_resource path="res://Classes/Renderable.tscn" type="PackedScene" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://Classes/MovingObjects/Player.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Classes/Layout/Camera.tscn" type="PackedScene" id=10]
 [ext_resource path="res://1bitpack_kenney_1.1/Tilesheet/monochrome_transparent_packed.png" type="Texture" id=11]
+[ext_resource path="res://Classes/Levels/DesktopControls.gd" type="Script" id=12]
+[ext_resource path="res://Classes/Levels/MobileControls.gd" type="Script" id=13]
 
 [sub_resource type="NavigationPolygon" id=1]
 vertices = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -484,34 +486,35 @@ current = true
 zoom = Vector2( 0.6, 0.6 )
 numTiles = Vector2( 8, 6 )
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="DesktopControls" type="Node2D" parent="."]
 modulate = Color( 1, 0.6, 0.6, 1 )
 position = Vector2( 85.8353, 105.674 )
 scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 12 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="Up" parent="Node2D" instance=ExtResource( 2 )]
+[node name="Up" parent="DesktopControls" instance=ExtResource( 2 )]
 position = Vector2( 0, -16 )
 row = 21
 col = 23
 
-[node name="Left" parent="Node2D" instance=ExtResource( 2 )]
+[node name="Left" parent="DesktopControls" instance=ExtResource( 2 )]
 position = Vector2( -18, 0 )
 row = 21
 col = 26
 
-[node name="Right" parent="Node2D" instance=ExtResource( 2 )]
+[node name="Right" parent="DesktopControls" instance=ExtResource( 2 )]
 position = Vector2( 18, 0 )
 row = 21
 col = 24
 
-[node name="Down" parent="Node2D" instance=ExtResource( 2 )]
+[node name="Down" parent="DesktopControls" instance=ExtResource( 2 )]
 row = 21
 col = 25
 
-[node name="TextDisplay" parent="Node2D" instance=ExtResource( 3 )]
+[node name="TextDisplay" parent="DesktopControls" instance=ExtResource( 3 )]
 position = Vector2( 40.3432, -15.2949 )
 display_string = "or        W A S D"
 should_type = false
@@ -604,6 +607,17 @@ should_type = false
 [node name="SoundTest" type="AudioStreamPlayer" parent="Control"]
 stream = ExtResource( 5 )
 bus = "SFX"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MobileControls" type="Node2D" parent="."]
+script = ExtResource( 13 )
+
+[node name="TextDisplay2" parent="MobileControls" instance=ExtResource( 3 )]
+position = Vector2( 106.007, 98.0266 )
+scale = Vector2( 0.5, 0.5 )
+display_string = "SWIPE"
+should_type = false
 [connection signal="time_step" from="Player" to="Carts" method="_on_Player_time_step"]
 [connection signal="value_changed" from="Control/MasterSlider" to="Control" method="_on_MasterSlider_value_changed"]
 [connection signal="value_changed" from="Control/MusicSlider" to="Control" method="_on_MusicSlider_value_changed"]

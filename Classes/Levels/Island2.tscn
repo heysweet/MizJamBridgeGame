@@ -472,7 +472,6 @@ tile_data = PoolIntArray( -65536, 2, 131073, -65535, 2, 3, -65534, 2, 65537, -65
 [node name="Cities" type="Node" parent="."]
 
 [node name="City2" parent="Cities" instance=ExtResource( 5 )]
-modulate = Color( 0.8, 0.733333, 0.266667, 1 )
 position = Vector2( 88, 40 )
 suit = 2
 tile_row = 2

@@ -456,7 +456,7 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 script = ExtResource( 3 )
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 152, 0 )
+position = Vector2( 152, 8 )
 tile_col = 9
 
 [node name="Navigation2D" type="Navigation2D" parent="."]
@@ -470,7 +470,6 @@ tile_data = PoolIntArray( -2, 2, 131073, -1, 2, 3, -65536, 2, 3, -65535, 2, 3, -
 [node name="Cities" type="Node" parent="."]
 
 [node name="City2" parent="Cities" instance=ExtResource( 7 )]
-modulate = Color( 0.8, 0.733333, 0.266667, 1 )
 position = Vector2( 56, 104 )
 suit = 2
 tile_row = 6
